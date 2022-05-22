@@ -2,18 +2,19 @@ from pyexpat import model
 from django.db import models
 
 # Create your models here.
+
 class TipoUsuario(models.Model):
     id_tipo = models.AutoField(primary_key=True, verbose_name='Id de tipo usuario')
     nombre = models.CharField(max_length=20, verbose_name='Nombre del tipo usuario', blank=False)
 
-    def __str__(self) :
+    def __str__(self):
         return self.nombre
 
 class Estado(models.Model):
     id_estado = models.AutoField(primary_key=True, verbose_name='Id del estado')
     nombre = models.CharField(max_length=20, verbose_name='Nombre del estado')
 
-    def __str__(self) :
+    def __str__(self):
         return self.nombre
 
 class Usuario(models.Model):
@@ -26,7 +27,7 @@ class Usuario(models.Model):
     estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
     tipousuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
 
-    def __str__(self) :
+    def __str__(self):
         return self.id_usuario
 
 
@@ -38,14 +39,14 @@ class Mensaje(models.Model):
     tipousuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
 
-    def __str__(self) :
+    def __str__(self):
         return self.contenido
 
 class Categoria(models.Model):
     id_categoria = models.AutoField(primary_key=True, verbose_name='Id de la categoria')
     nombre = models.CharField(max_length=20, verbose_name='Nombre de la categoria')
 
-    def __str__(self) :
+    def __str__(self):
         return self.nombre
 
 class Tabla(models.Model):
@@ -60,7 +61,7 @@ class Tabla(models.Model):
     tipousuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
-    def __str__(self) :
+    def __str__(self):
         return self.nom_dato
 
 class Comentario(models.Model):
@@ -72,7 +73,7 @@ class Comentario(models.Model):
     tipousuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
-    def __str__(self) :
+    def __str__(self):
         return self.texto
 
 
@@ -80,6 +81,7 @@ class Comentario(models.Model):
 
 
     
+
 
 
 
