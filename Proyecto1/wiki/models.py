@@ -1,3 +1,4 @@
+from pickle import FALSE
 from pyexpat import model
 from django.db import models
 
@@ -33,6 +34,7 @@ class Usuario(models.Model):
 
 class Mensaje(models.Model):
     id_mensaje = models.AutoField(primary_key=True, verbose_name='Mensaje que se le envia al usuario')
+    titulo = models.CharField(max_length=30, verbose_name='titulo del mensaje',blank=False)
     f_creacion = models.DateTimeField(verbose_name='Fecha de la creacion', blank=False)
     contenido = models.CharField(max_length=250, verbose_name='contenido del mensaje', blank=False)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -40,7 +42,7 @@ class Mensaje(models.Model):
     estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.contenido
+        return self.titulo
 
 class Categoria(models.Model):
     id_categoria = models.AutoField(primary_key=True, verbose_name='Id de la categoria')
@@ -56,10 +58,9 @@ class Tabla(models.Model):
     tipodato = models.CharField(max_length=30, blank=False)
     descripcion = models.CharField(max_length=250, verbose_name='contenido del comentario del foro', blank=False)
     f_creacion = models.DateTimeField(verbose_name='fecha de creacion', blank=False)
-    categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
-    tipousuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nom_dato
@@ -71,11 +72,12 @@ class Comentario(models.Model):
     texto = models.CharField(max_length=250, verbose_name='descripcion del comentario', blank=False)
     estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    tipousuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titulo_com
+
+
+
 
 
 
