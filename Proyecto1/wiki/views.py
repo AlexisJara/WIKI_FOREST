@@ -1,6 +1,4 @@
-from django.shortcuts import render, redirect
-from Proyecto1.wiki.models import Estado, TipoUsuario
-from models import Usuario, TipoUsuario
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -69,17 +67,3 @@ def Registrarse(request):
 
     return render(request ,'wiki/Registrarse.html')
 
-def Registrarse(request):
-    nombre_u = request.POST['nombre']
-    apellido_u = request.POST['apellido']
-    usuario_u = request.POST['nomusuario']
-    img_foto = request.FILES['foto']
-    email_u = request.POST['correo']
-    contra_u = request.POST['contra1']
-
-    tipo_u = TipoUsuario.objects.get(id_tipo = 1)
-    estado_u = Estado.objects.get(id_estado = 1)
-
-    Usuario.objects.create(nombre = nombre_u, apellido = apellido_u, id_usuario = usuario_u, foto = img_foto, correo = email_u, clave = contra_u, tipousuario = tipo_u,estado = estado_u)
-
-    return redirect('Registrarse/')
