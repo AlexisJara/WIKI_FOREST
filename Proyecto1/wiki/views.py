@@ -6,7 +6,7 @@ def menuprincipal(request):
 
     return render(request ,'wiki/menuprincipal.html')
 
-def Administrador(request):
+def Admin(request):
 
     return render(request ,'wiki/Admin.html')
 
