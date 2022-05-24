@@ -84,7 +84,7 @@ body {
 }
 
 .img-2 {
-    background-image: url('/static/wiki/img/menu-img/Fondo3.jpg');
+    background-image: url('static/wiki/img/menu-img/Fondo3.jpg');
     background-size: cover;
     background-position: center;
 }

@@ -21,7 +21,7 @@
 }
 
 #fondo1{
-    background-image: url(../img_wiki/Fondo3.jpg);
+    background-image: url('static/wiki/img/menu-img/Fondo3.jpg');
 }
 
 .color-titulo{

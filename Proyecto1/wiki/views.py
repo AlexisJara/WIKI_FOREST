@@ -1,3 +1,4 @@
+from cgitb import html
 from django.shortcuts import render
 from .models import Usuario
 
@@ -53,7 +54,7 @@ def Lugares(request):
     return render(request ,'wiki/Lugares.html')
 
 def Micuenta(request):
-
+    
     return render(request ,'wiki/Micuenta.html')
 
 def Recuperarcontra(request):
@@ -63,6 +64,16 @@ def Recuperarcontra(request):
 def Registrarse(request):
 
     return render(request ,'wiki/Registrarse.html')
+
+def Admin(request):
+
+    return render(request , 'wiki/Admin.html')
+
+
+def Vcontra(request):
+    
+    return render(request , 'wiki/VerificarContra.html')
+
 
 def listado(request):
     listadoUsuario = Usuario.objects.get("id_usuario","correo","estado")
