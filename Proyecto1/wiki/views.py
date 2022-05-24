@@ -64,14 +64,15 @@ def Registrarse(request):
 
     return render(request ,'wiki/Registrarse.html')
 
-def Admin(request):
+def listado(request):
     listadoUsuario = Usuario.objects.get("id_usuario","correo","estado")
-    return render(request ,'wiki/Admin.html', {"listados" : listadoUsuario})
+    contexto = {"listados" : listadoUsuario}
+    return render(request , 'wiki/Admin.html',contexto)
 
 def borrarUsuario(request, id_usuario):
     eliminar = Usuario.objects.get(id_usuario = id_usuario)
     eliminar.delete()
 
-    return render(request ,'wiki/Admin.html')
+    return render(request, 'listado')
 
 
