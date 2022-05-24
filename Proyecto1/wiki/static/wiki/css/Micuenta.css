@@ -1,3 +1,11 @@
+#fondo1{
+    background: linear-gradient(rgba(0, 0, 0, .363) 0%, rgba(0, 0, 0, 0.363) 100%);
+	background-size: cover;
+    background-image: url('/static/wiki/img/menu-img/Fondo3.jpg');
+ 
+}
+
+
 :root {
     --dark: #16191C;
     --dark-x: #1E2126; 

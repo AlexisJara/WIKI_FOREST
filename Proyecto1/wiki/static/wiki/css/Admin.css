@@ -21,7 +21,10 @@
 }
 
 #fondo1{
-    background-image: url('static/wiki/img/menu-img/Fondo3.jpg');
+    
+    background: linear-gradient(rgba(0, 0, 0, .363) 0%, rgba(0, 0, 0, 0.363) 100%);
+	background-size: cover;
+    background-image: url('/static/wiki/img/menu-img/Fondo3.jpg');
 }
 
 .color-titulo{
@@ -54,6 +57,7 @@ footer {
     flex-direction: column;
     text-align: center;
 	margin-top: 144px;
+   
 }
 
 #fuente{
@@ -96,7 +100,7 @@ Copiar esto
     width: 100%;
     display: flex;
     justify-content: center;
-    background-image: url(../img_wiki/Fondo3.jpg);
+    background-image: url('static/wiki/img/menu-img/Fondo3.jpg');
     margin-bottom: 1.25rem;
 }
 
