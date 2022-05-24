@@ -64,66 +64,34 @@
       <div class="container">
           <h1 class="color-titulo margin-abajo-titulo">Administrador</h1>
           <div class="row text-center">
-              <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <p class="colora">Buscar un usuario</p>
-                <form>
-                    <input type="text" placeholder="usuario" required>
-                    <button type="submit" class="btn btn-dark">
-                        Buscar
-                    </button>
-                </form>
-                <div>
-                    <input type="text" placeholder="Nombre" class="margin-abajo">
-                    <input type="text" placeholder="Apellido" class="margin-arriba">
-                </div>
-                <div>
-                    <input type="text" placeholder="Rut">
-                    <input type="text" placeholder="Comuna">
-                </div>
-                <div>
-                    <input type="email" placeholder="email" class="margin-abajo margin-arriba">
-                    <input type="text" placeholder="Estado">
-                </div>
-                </div>
-                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <p class="colora">Penalizar un usuario</p>
-                <form>
-                    <input type="text" class="margin-arriba" placeholder="Usuario" required>
-                    <select id="countries" name="countries" class="form-select margin-arriba">
-                        <option>Selecciona el tiempo</option>
-                        <option>1 semana</option>
-                        <option>2 semanas</option>
-                        <option>1 mes</option>
-                        <option>Suspension permanente</option>
-                    </select>
-                    <button type="submit" class="btn btn-dark">
-                        Penalizar
-                    </button>
-                </form>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="table-responsive">
+                <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th>Usuario</th>
+                      <th>Correo</th>
+                      <th>Estado</th>
+                      <th colspan="3">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for l in listados %}
+                    <tr>
+                      <td>{{l.id_usuario}}</td>
+                      <td>{{l.correo}}</td>
+                      <td>{{l.estado}}</td>
+                      <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
+                      <td><a href="banearUsuario/{{l.id_usuario}}" class="btn btn-danger">Banear</a></td>
+                      <td><a href="eliminarUsuario/{{l.id_usuario}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
-              <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <div class="d-block d-sm-block d-md-none">
-                    <p class="colora margin-abajo">Mensaje</p>
-                </div>
-                <div class="d-none d-sm-none d-md-block">
-                    <p class="colora">Mensaje</p>
-                </div>
-                <form>
-                    <div>
-                        <input type="text" placeholder="Usuario" required>
-                    </div>
-                    <div>
-                        <textarea name="" id="" cols="30" rows="5" placeholder="Mensaje" class="margin-abajo" required></textarea>
-                    </div>
-                    <div>
-                        <div>
-                            <button type="submit" class="btn btn-dark">
-                                Enviar mensaje
-                            </button>
-                        </div>
-                    </div>
-                </form>
-              </div>
+            </div>
+            <div class="col-md-2"></div>
           </div>
 
       </div>

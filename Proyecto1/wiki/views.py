@@ -1,14 +1,11 @@
 from django.shortcuts import render
+from .models import Usuario
 
 # Create your views here.
 
 def menuprincipal(request):
 
     return render(request ,'wiki/menuprincipal.html')
-
-def Admin(request):
-
-    return render(request ,'wiki/Admin.html')
 
 def Animales(request):
 
@@ -66,4 +63,15 @@ def Recuperarcontra(request):
 def Registrarse(request):
 
     return render(request ,'wiki/Registrarse.html')
+
+def Admin(request):
+    listadoUsuario = Usuario.objects.get("id_usuario","correo","estado")
+    return render(request ,'wiki/Admin.html', {"listados" : listadoUsuario})
+
+def borrarUsuario(request, id_usuario):
+    eliminar = Usuario.objects.get(id_usuario = id_usuario)
+    eliminar.delete()
+
+    return render(request ,'wiki/Admin.html')
+
 
