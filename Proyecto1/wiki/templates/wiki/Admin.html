@@ -83,12 +83,20 @@
                       <td>{{l.correo}}</td>
                       <td>{{l.estado}}</td>
                       <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
-                      <td><a href="banearUsuario/{{l.id_usuario}}" class="btn btn-danger">Banear</a></td>
-                      <td><a href="{% url 'eliminarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
+                      <td><a href="{% url 'penalizarUsuario' l.id_usuario %}" class="btn btn-danger">Banear</a></td>
+                      <td><a href="{% url 'borrarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
                 </table>
+                {% if messages %}
+                <div>
+                {% for i in messages %}
+                    <p style="color: red;">{{ i }}</p>
+                {% endfor %}
+                </div>
+
+            {% endif %}
               </div>
             </div>
             <div class="col-md-2"></div>

@@ -1,6 +1,7 @@
 from cgitb import html
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Usuario
+from django.contrib import messages
 
 # Create your views here.
 
@@ -88,10 +89,19 @@ def listado(request):
     contexto = {"listados" : listadoUsuario}
     return render(request , 'wiki/Admin.html',contexto)
 
+def penalizarUsuario(request, id_usuario):
+    usuario = Usuario.objects.get(id_usuario = id_usuario)
+    usuario.estado = 2
+    Usuario.save()
+    messages.success(request, 'Usuario baneado')
+
+    return redirect(request, 'listado')
+
 def borrarUsuario(request, id_usuario):
     eliminar = Usuario.objects.get(id_usuario = id_usuario)
     eliminar.delete()
+    messages.success(request, 'Usuario borrado')
 
-    return render(request, 'listado')
+    return redirect(request, 'listado')
 
 
