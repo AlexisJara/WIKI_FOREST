@@ -103,8 +103,6 @@ def registrar_usuario(request):
         return redirect('registrarse')
 
 
-
-
 def listado(request):
     listadoUsuario = Usuario.objects.get("id_usuario","correo","estado")
     contexto = {"listados" : listadoUsuario}

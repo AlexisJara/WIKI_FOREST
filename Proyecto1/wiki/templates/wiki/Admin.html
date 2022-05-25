@@ -89,12 +89,12 @@
                     {% endfor %}
                   </tbody>
                 </table>
-                {% if messages %}
-                <div>
-                {% for i in messages %}
-                    <p style="color: red;">{{ i }}</p>
-                {% endfor %}
-                </div>
+            {% if messages %}
+            <div>
+              {% for i in messages %}
+                <p style="color: red;">{{ i }}</p>
+              {% endfor %}
+            </div>
 
             {% endif %}
               </div>
