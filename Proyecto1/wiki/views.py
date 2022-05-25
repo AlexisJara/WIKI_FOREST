@@ -1,4 +1,5 @@
 from cgitb import html
+from turtle import update
 from django.shortcuts import render, redirect
 from .models import TipoUsuario, Usuario,Estado
 from django.contrib import messages
@@ -124,5 +125,32 @@ def borrarUsuario(request, id_usuario):
     messages.success(request, 'Usuario borrado')
 
     return redirect('listado')
+
+
+def modificarC2(request):
+    nombre_u = request.POST['nombre']
+    apellido_u = request.POST['apellido']
+    nomusuario_u = request.POST['nomusuario']
+    avatar_u = request.FILES['foto']
+    correo_u = request.POST['correo']
+    clave_u = request.POST['Clave1']
+    clave_u2 = request.POST['Clave2']
+
+    usuario = Usuario.objects.get(id_usuario = nomusuario_u)
+    usuario.nombre = nombre_u
+    usuario.apellido = apellido_u
+    usuario.foto = avatar_u
+    usuario.correo = correo_u
+    usuario.clave = clave_u
+    usuario.clave = clave_u2
+
+    usuario.save()
+
+    messages.success(request, 'Usuario Modificado')
+    return redirect('Micuenta')
+
+
+
+
 
 
