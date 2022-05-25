@@ -1,6 +1,6 @@
 var nombre = document.getElementById("validationCustom01");
 var clave = document.getElementById("contra1");
-var apellido = document.getElementById("apellido")
+var apellido = document.getElementById("apellido");
 const form = document.getElementById("form");
 var mensaje = document.getElementById("warnings");
 
