@@ -1,6 +1,6 @@
 from cgitb import html
 from django.shortcuts import render, redirect
-from .models import Usuario
+from .models import TipoUsuario, Usuario,Estado
 from django.contrib import messages
 
 # Create your views here.
@@ -82,6 +82,27 @@ def ModificarC(request):
 def FormularioTablas(request):
 
     return render(request, 'wiki/FormularioTablas.html')
+
+def registrar_usuario(request):
+    nombre_u = request.POST['validationCustom01']
+    apellido_u = request.POST['apellido']
+    nomusuario_u = request.POST['nomusuario']
+    avatar_u = request.FILES['foto_u']
+    correo_u = request.POST['validationCustom04']
+    clave_u = request.POST['contra1']
+
+    estado_u = Estado.objects.get(id_estado = 1)
+    tipousuario2=TipoUsuario.objects.get(id_tipo = 2)
+    existe = None
+    try:
+        existe = Usuario.objects.get(id_usuario = nomusuario_u)
+        messages.error(request,'El usuario existe')
+        return redirect ('registro')
+    except:
+        Usuario.objects.create(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u, Estado = estado_u, TipoUsuario = tipousuario2  )
+        return redirect('registrarse')
+
+
 
 
 def listado(request):

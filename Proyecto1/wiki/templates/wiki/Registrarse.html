@@ -74,42 +74,46 @@
                     <div class="container">
                     <div class="opa-input">
                       <div class="margin-formulario">
-                        <form class="row g-3 needs-validation" method="POST" id="form" novalidate>
+                        <form class="row g-3 needs-validation" action="{% url 'registro' %}" method="POST" enctype="multipart/form-data" id="form" name="form" novalidate>
+                          {% csrf_token %}
+                          {% if messages %}
+                          <div>
+                            {% for i in messages %}
+                              <p style="color: red;">{{ i }}</p>
+                              {% endfor %}
+                          </div>
+                          {% endif %}
                           <div class="col-md-6">
                             <label for="validationCustom01" class="form-label font-weight-bold">Nombre</label>
-                            <input type="text" class="form-control bg-dark-x border-0" id="validationCustom01" 
+                            <input type="text" class="form-control bg-dark-x border-0" id="validationCustom01" name="validationCustom01"
                               placeholder="Nombre" style="background-color: #ffffff;" required>
                           </div>
                           <div class="col-md-6">
                             <label for="" class="form-label font-weight-bold">Apellido</label>
-                            <input type="text" class="form-control bg-dark-x border-0" id="apellido"
+                            <input type="text" class="form-control bg-dark-x border-0" id="apellido" name="apellido"
                               placeholder="Apellido" style="background-color: #ffffff;" required>
                           </div>
                           <div class="col-md-6">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold">Usuario</label>
-                            <input type="text" class="form-control bg-dark-x border-0" id="nomusuario"
+                            <input type="text" class="form-control bg-dark-x border-0" id="nomusuario" name="nomusuario"
                               placeholder="Corxea123" style="background-color: #ffffff;" required>
                           </div>
                           
                           <div class="col-md-3">
                             <label for="" class="form-label">Avatar</label>
-                            <input type="image" class="form-control">
+                            <input type="file" class="form-control" id="foto_u" name="foto_u">
                           </div>
 
-                          <div class="mb-2">
-                            <label for="exampleInputEmail1" class="form-label font-weight-bold">Rut</label>
-                            <input type="text" class="form-control bg-dark-x border-0" id="txt_rut"
-                              placeholder="12345678-9" style="background-color: #ffffff;" required>
-                          </div>
+                          
                           <div class="mb-2">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold">Email</label>
-                            <input type="email" name="correo" class="form-control bg-dark-x border-0" id="validationCustom04"
+                            <input type="email" name="correo" class="form-control bg-dark-x border-0" id="validationCustom04" name="validationCustom04"
                               placeholder="nombre@ejemplo.com"
                               style="background-color: #ffffff;" required>
                           </div>
                           <div class="col-md-6">
                             <label for="exampleInputEmail1" class="form-label font-weight-bold">Contraseña</label>
-                            <input type="password" class="form-control bg-dark-x border-0" id="contra1"
+                            <input type="password" class="form-control bg-dark-x border-0" id="contra1" name="contra1"
                               placeholder="Ingrese su contraseña"
                               style="background-color: #ffffff;" required>
                           </div>
