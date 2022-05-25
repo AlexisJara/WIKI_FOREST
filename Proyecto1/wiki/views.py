@@ -101,8 +101,6 @@ def registrar_usuario(request):
 
 
 
-
-
 def listado(request):
     listadoUsuario = Usuario.objects.get("id_usuario","correo","estado")
     contexto = {"listados" : listadoUsuario}
