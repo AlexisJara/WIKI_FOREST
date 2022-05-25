@@ -5,7 +5,7 @@ const form = document.getElementById("form");
 var mensaje = document.getElementById("warnings");
 
 form.addEventListener("submit", e => {
-    e.preventDefault();
+
     let mensajesMostrar = "";
     let entrar = false;
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
@@ -35,10 +35,6 @@ form.addEventListener("submit", e => {
             entrar = true;
         }
 
-    if (!rut.test(txt_rut.value)) {
-        mensajesMostrar += 'El rut no es valido <br>'
-        entrar = true
-    }
 
     if (!regexEmail.test(validationCustom04.value)) {
         mensajesMostrar += 'El email no es valido <br>'

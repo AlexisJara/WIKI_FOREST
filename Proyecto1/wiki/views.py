@@ -92,16 +92,14 @@ def registrar_usuario(request):
     correo_u = request.POST['validationCustom04']
     clave_u = request.POST['contra1']
 
-    estado_u = Estado.objects.get(id_estado = 1)
-    tipousuario2=TipoUsuario.objects.get(id_tipo = 2)
-    existe = None
-    try:
-        existe = Usuario.objects.get(id_usuario = nomusuario_u)
-        messages.error(request,'El usuario existe')
-        return redirect ('registro')
-    except:
-        Usuario.objects.create(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u, Estado = estado_u, TipoUsuario = tipousuario2  )
-        return redirect('registrarse')
+
+    estado_u = Estado.objects.get(id_estado = 4)
+    tipousuario2 = TipoUsuario.objects.get(id_tipo = 2)
+    
+    Usuario.objects.create(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u, estado = estado_u, tipousuario = tipousuario2)
+    messages.success(request,'Usuario Registrado')
+    return redirect('menuprincipal')
+
 
 
 def listado(request):
