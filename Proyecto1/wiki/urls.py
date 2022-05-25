@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, penalizarUsuario, registrar_usuario
+from .views import listado, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, penalizarUsuario, registrar_usuario
 
 
 urlpatterns = [
@@ -32,13 +32,14 @@ urlpatterns = [
     path('Micuenta/', Micuenta, name='Micuenta'),
     path('Recuperarcontra/', Recuperarcontra, name='Recuperarcontra'),
     path('Registrarse/', Registrarse, name='Registrarse'),
-    path('Admin/', Admin, name='Admin'),
+    path('Admin/', listado, name='Admin'),
     path('Historia/', Historia, name='Historia'),
-    path('eliminarUsuario/<id_usuario>', borrarUsuario, name="borrarUsuario"),
-    path('banearUsuario/<id_usuario>', penalizarUsuario, name="penalizarUsuario"),
+    path('eliminarUsuario/<id_usuario>', borrarUsuario, name="eliminarUsuario"),
+    path('banearUsuario/<id_usuario>', penalizarUsuario, name="banearUsuario"),
     path('VerificarContra/', Vcontra, name='VerificarContra'),
     path('ModificarCuenta/', ModificarC, name="ModificarCuenta"),
     path('FormularioTablas', FormularioTablas, name='FormularioTablas'),
     path('registro/', registrar_usuario, name='registro'),
+    path('listado/', listado, name='listado'),
 
 ]

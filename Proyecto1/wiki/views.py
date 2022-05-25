@@ -104,13 +104,12 @@ def registrar_usuario(request):
 
 
 def listado(request):
-    listadoUsuario = Usuario.objects.get("id_usuario","correo","estado")
-    contexto = {"listados" : listadoUsuario}
-    return render(request , 'wiki/Admin.html',contexto)
+    listadoUsuario = Usuario.objects.all()
+    return render(request , 'wiki/Admin.html',{"listados" : listadoUsuario})
 
 def penalizarUsuario(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
-    usuario.estado = 2
+    estadoU=Estado.objects.get(id_tipo = 2)
     Usuario.save()
     messages.success(request, 'Usuario baneado')
 
