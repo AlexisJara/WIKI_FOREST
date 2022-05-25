@@ -93,7 +93,7 @@ def penalizarUsuario(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
     usuario.estado = 2
     Usuario.save()
-    messages.success(request, 'Usuario baneado')
+    messages.success('Usuario baneado')
 
     return redirect(request, 'listado')
 
@@ -102,6 +102,6 @@ def borrarUsuario(request, id_usuario):
     eliminar.delete()
     messages.success(request, 'Usuario borrado')
 
-    return redirect(request, 'listado')
+    return redirect('listado')
 
 
