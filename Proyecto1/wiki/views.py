@@ -133,6 +133,9 @@ def borrarUsuario(request, id_usuario):
     return redirect('listado')
 
 
+
+
+
 def modificarC2(request):
     nombre_u = request.POST['nombre']
     apellido_u = request.POST['apellido']
@@ -150,13 +153,8 @@ def modificarC2(request):
     usuario.clave = clave_u
     usuario.clave = clave_u2
 
+   
+    Usuario.objects.update(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u)
     usuario.save()
-
     messages.success(request, 'Usuario Modificado')
     return redirect('Micuenta')
-
-
-
-
-
-

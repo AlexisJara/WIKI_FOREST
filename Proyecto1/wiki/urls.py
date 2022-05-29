@@ -41,7 +41,6 @@ urlpatterns = [
     path('FormularioTablas', FormularioTablas, name='FormularioTablas'),
     path('registro/', registrar_usuario, name='registro'),
     path('listado/', listado, name='listado'),
-
     path('ini_sesion/', ini_sesion, name='ini_sesion'),
     
 
