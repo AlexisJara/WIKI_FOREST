@@ -87,14 +87,22 @@
                 </div>
                 <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
                 <h1 class="font-weight-bold mb-4" id="subir">Bienvenido Ingresa tu Usuario</h1>
-                <form class="mb-5">
+                <form class="mb-5" action="{% url 'ini_sesion' %}"  method="POST" id="formulario">
+                  {% csrf_token %}
+                  {% if messages %}
+                          <div>
+                            {% for i in messages %}
+                              <p style="color: red;">{{ i }}</p>
+                              {% endfor %}
+                          </div>
+                          {% endif %}
                     <div class="mb-4">
-                      <label for="exampleInputEmail1" class="form-label font-weight-bold">Email</label>
-                      <input type="email" class="form-control bg-dark-x border-0" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" aria-describedby="emailHelp" required style="background-color: #ffffff;">
+                      <label for="exampleInputEmail1" class="form-label font-weight-bold">Usuario</label>
+                      <input type="text" class="form-control bg-dark-x border-0" id="usuariof" name="usuariof" placeholder="Ingresa tu usuario" aria-describedby="emailHelp" required style="background-color: #ffffff;">
                     </div>
                     <div class="mb-4">
                       <label for="exampleInputPassword1" class="form-label font-weight-bold">Contraseña</label>
-                      <input type="password" value="" id="myInput" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu contraseña" id="exampleInputPassword1" 
+                      <input type="password" id="contrasena" name="contrasena" class="form-control bg-dark-x border-0 mb-2" placeholder="Ingresa tu contraseña" 
                        required style="background-color: #ffffff;">
                       <input type="checkbox" onclick="myFunction()"> Mostrar Contraseña
                       <a href="{% url 'Recuperarcontra' %}" id="emailHelp" class="form-text text-muted text-decoration-none">  ¿Has olvidado tu contraseña?</a>                     

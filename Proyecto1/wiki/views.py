@@ -93,14 +93,25 @@ def registrar_usuario(request):
     clave_u = request.POST['contra1']
 
 
-    estado_u = Estado.objects.get(id_estado = 4)
+    estado_u = Estado.objects.get(id_estado = 1)
     tipousuario2 = TipoUsuario.objects.get(id_tipo = 2)
     
     Usuario.objects.create(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u, estado = estado_u, tipousuario = tipousuario2)
     messages.success(request,'Usuario Registrado')
     return redirect('menuprincipal')
 
-
+def ini_sesion(request):
+    usuario1 = request.POST['usuariof']
+    contra = request.POST['contrasena']
+    try:
+        usuario2 = Usuario.objects.get(id_usuario = usuario1 , clave = contra)
+        if(usuario2.tipousuario.id_tipo == 2):
+            return redirect ('menuprincipal')
+        else:
+            return redirect ('Registrarse')
+    except:
+        messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
+        return redirect ('inicio-sesion')
 
 def listado(request):
     listadoUsuario = Usuario.objects.all()
