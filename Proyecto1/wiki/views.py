@@ -119,7 +119,7 @@ def listado(request):
 
 def penalizarUsuario(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
-    estadoU=Estado.objects.get(id_tipo = 2)
+    usuario.estado = 2
     Usuario.save()
     messages.success(request, 'Usuario baneado')
 
