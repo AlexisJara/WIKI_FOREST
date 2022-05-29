@@ -119,9 +119,14 @@ def listado(request):
 
 def penalizarUsuario(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
-    usuario.estado = 2
-    Usuario.save()
-    messages.success(request, 'Usuario baneado')
+    if usuario.estado == 1:
+        usuario.estado = 2
+        Usuario.save()
+        messages.success(request, 'Usuario baneado')
+    elif usuario.estado == 2:
+        usuario.estado = 1
+        Usuario.save()
+        messages.success(request, 'Usuario desbaneado')
 
     return redirect('listado')
 
