@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado,ini_sesion
+from .views import listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo
 
 urlpatterns = [
     path('', menuprincipal, name='menuprincipal'),
@@ -24,7 +24,7 @@ urlpatterns = [
     path('Consumibles/', Consumibles, name='Consumibles'),
     path('Enemigos/', Enemigos, name='Enemigos'),
     path('Flora/', Flora, name='Flora'),
-    path('Foro/', forowiki, name='Foro'),
+    path('Foro/', listadoForo, name='Foro'),
     path('Inicio-sesion/', inicio_sesion, name='Inicio-sesion'),
     path('Logros/', Logros, name='Logros'),
     path('Lugares/', Lugares, name='Lugares'),
@@ -41,6 +41,7 @@ urlpatterns = [
     path('FormularioTablas', FormularioTablas, name='FormularioTablas'),
     path('registro/', registrar_usuario, name='registro'),
     path('listado/', listado, name='listado'),
+    path('listadoForo/', listadoForo, name='listadoForo'),
     path('ini_sesion/', ini_sesion, name='ini_sesion'),
     
 

@@ -1,7 +1,7 @@
 from cgitb import html
 from turtle import update
 from django.shortcuts import render, redirect
-from .models import TipoUsuario, Usuario,Estado
+from .models import Comentario, TipoUsuario, Usuario,Estado
 from django.contrib import messages
 
 # Create your views here.
@@ -116,6 +116,10 @@ def ini_sesion(request):
 def listado(request):
     listadoUsuario = Usuario.objects.all()
     return render(request , 'wiki/Admin.html',{"listados" : listadoUsuario})
+
+def listadoForo(request):
+    listadoComentario = Comentario.objects.all()
+    return render(request , 'wiki/Admin.html',{"listadosForo" : listadoComentario})
 
 def penalizarUsuario(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
