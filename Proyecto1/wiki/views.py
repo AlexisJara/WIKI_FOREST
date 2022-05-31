@@ -1,7 +1,7 @@
 from cgitb import html
 from turtle import update
 from django.shortcuts import render, redirect
-from .models import Comentario, TipoUsuario, Usuario,Estado
+from .models import Comentario, Tabla, TipoUsuario, Usuario,Estado
 from django.contrib import messages
 
 # Create your views here.
@@ -15,6 +15,9 @@ def Animales(request):
     return render(request ,'wiki/Animales.html')
 
 def Armas(request):
+
+    #listadoTabla = Tabla.objects.filter(categoria = 1)
+    #return render(request , 'wiki/Armas.html',{"listados" : listadoTabla})
 
     return render(request ,'wiki/Armas.html')
 
@@ -142,9 +145,6 @@ def borrarUsuario(request, id_usuario):
     return redirect('listado')
 
 
-
-
-
 def modificarC2(request):
     nombre_u = request.POST['nombre']
     apellido_u = request.POST['apellido']
@@ -167,3 +167,5 @@ def modificarC2(request):
     usuario.save()
     messages.success(request, 'Usuario Modificado')
     return redirect('Micuenta')
+
+
