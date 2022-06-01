@@ -185,3 +185,12 @@ nav{
 #separar-izquiera{
 	margin-left: 20px;
 }
+
+.warnings{
+    text-align: center;
+    margin: auto;
+    color: white;
+    padding-top: 20px;
+    text-justify: auto;
+    transform: translateX(-10%);
+}
