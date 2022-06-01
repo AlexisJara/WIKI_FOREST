@@ -16,10 +16,9 @@ def Animales(request):
 
 def Armas(request):
 
-    #listadoTabla = Tabla.objects.filter(categoria = 1)
-    #return render(request , 'wiki/Armas.html',{"listados" : listadoTabla})
-
-    return render(request ,'wiki/Armas.html')
+    listadoTabla = Tabla.objects.filter(categoria = 1)
+    
+    return render(request , 'wiki/Armas.html',{"listados" : listadoTabla})
 
 def Construcciones(request):
 
@@ -40,7 +39,9 @@ def Flora(request):
 
 def forowiki(request):
 
-    return render(request ,'wiki/forowiki.html')
+    listadoForo = Comentario.objects.all()
+    
+    return render(request , 'wiki/forowiki.html',{"listados" : listadoForo})
 
 def Historia(request):
 
@@ -143,6 +144,20 @@ def borrarUsuario(request, id_usuario):
     messages.success(request, 'Usuario borrado')
 
     return redirect('listado')
+
+def borrarContenido(request, id_tema):
+    eliminar = Tabla.objects.get(id_tema = id_tema)
+    eliminar.delete()
+    messages.success(request, 'Contenido borrado')
+
+    return redirect('Armas')
+
+def borrarComentario(request, id_comentario):
+    eliminar = Comentario.objects.get(id_comentario = id_comentario)
+    eliminar.delete()
+    messages.success(request, 'Comentario borrado')
+
+    return redirect('forowiki')
 
 
 def modificarC2(request):
