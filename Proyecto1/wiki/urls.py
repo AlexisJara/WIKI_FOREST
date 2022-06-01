@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo
+from .views import borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo
 
 urlpatterns = [
     path('', menuprincipal, name='menuprincipal'),
@@ -24,7 +24,7 @@ urlpatterns = [
     path('Consumibles/', Consumibles, name='Consumibles'),
     path('Enemigos/', Enemigos, name='Enemigos'),
     path('Flora/', Flora, name='Flora'),
-    path('Foro/', listadoForo, name='Foro'),
+    path('Foro/', forowiki, name='Foro'),
     path('Inicio-sesion/', inicio_sesion, name='Inicio-sesion'),
     path('Logros/', Logros, name='Logros'),
     path('Lugares/', Lugares, name='Lugares'),
@@ -33,6 +33,8 @@ urlpatterns = [
     path('Registrarse/', Registrarse, name='Registrarse'),
     path('Admin/', listado, name='Admin'),
     path('Historia/', Historia, name='Historia'),
+    path('eliminarContenido/<int:id_tema>', borrarContenido, name="borrarContenido"),
+    path('eliminarComentario/<int:id_comentario>', borrarComentario, name="borrarComentario"),
     path('eliminarUsuario/<id_usuario>', borrarUsuario, name="eliminarUsuario"),
     path('banearUsuario/<id_usuario>', penalizarUsuario, name="banearUsuario"),
     path('VerificarContra/', Vcontra, name='VerificarContra'),

@@ -66,30 +66,25 @@
                 <button class="btn margin-bot" type="button" >Agregar imagen</button>
                 <button class="btn " type="submit">Comentar</button>
             </form>
-
+            {% for l in listados %}
             <div class="media">
                 <img src="{% static 'wiki/img/Foro/user.png' %}" alt="">
                 <div class="media-body">
-                    <p class="nombre">Kevin Oyaneder <span>8:00 pm, Hoy</span></p>
+                    <p class="nombre">{{l.usuario}} <span>{{l.f_creacion}}</span></p>
                     <p class="comentario color-comentarios">
-                        Jugabilidad del juego <br>
+                        {{l.titulo_com}} <br>
                         <br>
-                        Yeah
-                        Perdonen, Kamehameha
-                        Después del tema del Tetris viene el Dragon Ball Rap
-                        Quien no haya seguido esta serie es porque no tiene infancia
-                        Big Bang Attack ataca desde el Planeta Namek
-                        Vegeta, Son Goku, rivalidades Saiyan
-                        (Allargat bastó) y es que en castellano raya
+                        {{l.texto}}
                     </p>
                     <div class="botones text-right">
                         <a href="#"> Editar</a>
-                        <a href="#"> Borrar</a>
+                        <a href="{% url 'borrarComentario' l.id_comentario %}"> Borrar</a>
                     </div>
 
                 </div>
 
             </div>
+            {% endfor %}
 
 
         </div>

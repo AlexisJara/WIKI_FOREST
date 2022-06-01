@@ -15,6 +15,10 @@
 	
 }
 
+.buttona{
+	margin-right: 15px;
+}
+
 #fondo{
    background-color: black;  
    background-image: url(../img_wiki/Fondo3.jpg); 
