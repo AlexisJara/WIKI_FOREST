@@ -28,10 +28,11 @@ def Consumibles(request):
 
     return render(request ,'wiki/Consumibles.html')
 
-    
 def Enemigos(request):
 
-    return render(request ,'wiki/Enemigos.html')
+    listadoTabla = Tabla.objects.filter(categoria = 2)
+    
+    return render(request , 'wiki/Enemigos.html',{"listados" : listadoTabla})
 
 def Flora(request):
 
