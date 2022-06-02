@@ -154,7 +154,6 @@ def borrarContenido(request, id_tema):
     return redirect('Armas')
 
 def registroTabla(request):
-    usuDato = request.POST['']
     categoriat = request.POST['categoria']
     fotot = request.FILES['foto']
     nomDato = request.POST['nombreDato']
