@@ -3,7 +3,7 @@ from turtle import update
 from django.shortcuts import render, redirect
 from .models import Comentario, Tabla, TipoUsuario, Usuario,Estado
 from django.contrib import messages
-
+import datetime
 # Create your views here.
 
 def menuprincipal(request):
@@ -152,6 +152,21 @@ def borrarContenido(request, id_tema):
     messages.success(request, 'Contenido borrado')
 
     return redirect('Armas')
+
+def registroTabla(request):
+    usuDato = request.POST['']
+    categoriat = request.POST['categoria']
+    fotot = request.FILES['foto']
+    nomDato = request.POST['nombreDato']
+    tipoDato = request.POST['tipodato']
+    desDato = request.POST['descripcion']
+    fecDato = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+
+    estadoDato = Estado.objects.get(id_estado = 1)
+
+    Tabla.objects.create(categoria = categoriat, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
+    messages.success(request,'Dato registrado')
+    return redirect('menuprincipal')
 
 def borrarComentario(request, id_comentario):
     eliminar = Comentario.objects.get(id_comentario = id_comentario)
