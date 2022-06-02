@@ -52,15 +52,16 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="" method="POST" id="form">
+                <form action="{% url 'registroTabla' %}" method="POST" id="form">
+                    {% csrf_token %}
                     <h1 class="label-color">Aporta tu conocimiento!</h1>
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
                         <select name="" id="categoria" class="form-select margin-abajo">
                             <option selected>Elige una categoria</option>   
-                            <option value="Enemigos">Enemigos</option>
-                            <option value="Flora">Flora</option>
-                            <option value="Armas">Armas</option>
+                            <option value="1">Armas</option>
+                            <option value="2">Enemigos</option>
+                            <option value="3">Flora</option>
                         </select>
                     </div>
                     <div>
@@ -69,7 +70,7 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Nombre de Enemigo/Flora/Arma</label>
-                        <input type="text" id="nomdato" class="form-control margin-abajo">
+                        <input type="text" id="validationCustom01" class="form-control margin-abajo">
                     </div>
                     <div>
                         <label for="" class="label-color">Tipo de dato</label>
@@ -78,7 +79,7 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Descripcion</label>
-                        <textarea name="" id="descripcion" cols="62" rows="5" class="margin-abajo separar-lados"></textarea>
+                        <textarea name="" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control"></textarea>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -87,7 +88,10 @@
                         <div class="col">
                             <button type="reset" class="btn btn-dark form-control">Borrar</button>
                         </div>
+                       
                     </div>
+                    <div class="center">
+                        <p class="warnings" id="warnings"></p></div>
                 </form>
             </div>
             <div class="col-md-3"></div>
@@ -99,5 +103,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'wiki/js/val_FormularioTablas.js' %}"></script>
 </body>
 </html>

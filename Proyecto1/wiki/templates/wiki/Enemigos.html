@@ -84,254 +84,42 @@
                     
                     
                 </div>
-                <div class="margin-tabla">
+                <div class="margin-tabla bordesss">
                     <div class="row">
-                            <div class="d-none d-sm-none d-md-block col-sm-4 border border-secondary fondo-tabla center">
+                            <div class="d-none d-sm-none d-md-block col-sm-2 border border-secondary fondo-tabla center">
+                                <h5>Usuario</h5>
+                            </div>
+                            <div class="d-none d-sm-none d-md-block col-sm-2 border border-secondary fondo-tabla center">
                                 <h5>Enemigo</h5>
                             </div>
-                            <div class="d-none d-sm-none d-md-block col-sm-4 border border-secondary fondo-tabla center">
-                                <h5>Tipo enemigo</h5>
-                            </div>
-                            <div class="d-none d-sm-none d-md-block col-sm-4 border border-secondary fondo-tabla center">
+                            <div class="d-none d-sm-none d-md-block col-sm-5 border border-secondary fondo-tabla center">
                                 <h5>Descripcion</h5>
+                            </div>
+                            <div class="d-none d-sm-none d-md-block col-sm-3 border border-secondary fondo-tabla center">
+                                <h5>Opciones</h5>
                             </div>
                         
                     </div>
-                    <div class="letra">
+                    <div class="letra bordesss">
+                        {% for l in listados %}
                         <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/SkinnyCannibals.webp' %}" alt="" class="imagen img-fluid"><br>Canibales delgados</p>
+                            <div class="col-sm-2 border border-secondary fondo-tabla center">
+                                <p class="center-titulo">{{ l.usuario }}<span><br>{{ l.f_creacion }}</p>
                             </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
+                            <div class="col-sm-2 border border-secondary fondo-tabla center">
+                                <p class="center-titulo"><img src="{{ l.foto.url }}" alt="" class="imagen img-fluid"><br>{{ l.nom_dato }}</p>
                             </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Estos canibales son de los primeros que te encuentras en la isla aunque son de los mas debiles de toda la variedad que existen ya que tienen poca vida y poco daño, al momento de enfrentarlos no suponen ningun peligro a menos que esten grupo.</p>
+                            <div class="col-sm-5 border border-secondary fondo-tabla center">
+                                <p class="center-titulo">{{ l.descripcion }}</p>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/RegularCannibals.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales normales</p>
+                            <div class="col-sm-3 border border-secondary fondo-tabla center">
+                                <div class="row">
+                                    <div class="col-md-6"><a href="#" class="btn btn-info">Editar</a></div>
+                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema %}" class="btn btn-danger">Eliminar</a></div>
+                                </div>
                             </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Los canibales normales son el primer enemigo que encuentras en el
-                                    juego, los cuales siempre van en manada de un lider y 2 a 4 mujeres, al principio te
-                                    costara un poco matarlos por su vida intermedia y su daño intermedio, pero a medida
-                                    que avances encontraras la mejor forma de enfrentarlos.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/PaleCannibal.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales palidos</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Los canibales palidos son un enemigo de dificultad intermedia ya
-                                    que su viday su daño es del doble que el del canibal delgado, se caracterizan, por
-                                    como dice su nombre, ser palidos.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/PaleSkinnyCannibal.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales palidos y delgados</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Los canibales palidos y delgados son iguales a los canibales
-                                    delgados pero los palidos pegan aun menos resultando asi mas faciles.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/PaintedCannibals.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales pintados</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Estos son los canibales mas fuertes del juego ya que tienen mucha
-                                    vida y un daño elevado, ademas estos van en manada de hasta 5 con un lider el cual
-                                    es el mas peligroso, aparte de que estan todos pintados con una pintura roja, el
-                                    lider se diferencia del resto por llevar un palo con una calavera arriba de la
-                                    cabeza.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/Firemen.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales de fuego</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Los canibales de fuego tienen vida y daño bajo, aunque ellos
-                                    siempre llevan una antorcha con la cual pegan, ten cuidado con su ataque ya que te
-                                    aplica quemado.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/MaskedCannibal.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales enmascarados</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Estos canibales se diferencian del resto por ser altos y llevar una
-                                    mascara hecha de pieles de sus victimas, su cantidad de vida es intermedia pero
-                                    su daño es medio-elevado.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/MaskedSkinnyCannibal.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales enmascarados y delgados</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Esta es la variante del canibal enmascarado pero es mas debil,
-                                    teniendo el doble de vida menos y el triple de daño menos.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center separar-arriba">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/DynamiteCannibal.webp' %}" alt="" class="imagen img-fluid centrart"><br>Canibales dinamita</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Canibal</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Estos canibales van en grupos de 2-4, son faciles de diferenciar ya
-                                    que son amarillos y usan un cinturon con dinamita, ademas su arma es un palo con
-                                    fuego, su daño no es mucho y su vida es poca, pero ten cuidado ya que estos en algun
-                                    momento de la pelea explotaran lo mas cerca tuyo.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/Armsy.webp' %}" alt="" class="imagen img-fluid centrart"><br>Armsy</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este mutante se caracteriza por no tener cabeza y tener muchos
-                                    brazos en la zona del torso, su vida es elevada y su daño es intermedio, pero este
-                                    mutante pega con cada brazo cada vez que te ataca, acumulando su daño.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/Virginia.webp' %}" alt="" class="imagen img-fluid centrart"><br>Virginia</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Virginia es un mutante con muchas patas y tiene unos brazos muy
-                                    cortos, su vida es elevada y su daño es intermedio, este tiene varios ataques desde
-                                    una embestida con sus atas delanteras hasta un salto que termina impactando en ti.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/Cowman.webp' %}" alt="" class="imagen img-fluid centrart"><br>Cowman</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este mutante de nombre "Cowman" es un enemigo con brazos cortos
-                                    pero su demas cuerpo es ancho, su vida es elevada y su daño bajo, pero ten cuidado
-                                    ya que tiene ataques y una embestida que es capaz de derribarte por unos segundos
-                                    dejandote muy vulnerable.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/BabyMutant.webp' %}" alt="" class="imagen img-fluid centrart"><br>Bebe mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este mutante es el enemigo con menos vida del juego y su daño es
-                                    intermedio, como dice su nombre, es un bebe mutante muy pequeño, estos siempre los
-                                    encuentras en un grupo de muchos bebes, ten cuidado con su ataque de salto ya que
-                                    saltan todos a la vez y cuando todos los bebes mutantes salten hacia a ti pueden
-                                    provocar una insta-muerte.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/GreyArmsy.webp' %}" alt="" class="imagen img-fluid centrart"><br>Armsy gris</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este es una variante del Armsy normal pero tiene mas vida y mas
-                                    daño, a comparacion de su variante normal, este logra ser una enemigo fuerte.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/GreyVirginia.webp' %}" alt="" class="imagen img-fluid centrart"><br>Virginia gris</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este es una variante del mutante "Virginia" pero con mas vida y mas
-                                    daño logrando ser uno de los enemigos mas formidables del juego.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/Worm.webp' %}" alt="" class="imagen img-fluid centrart"><br>Gusano</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este mutante tiene forma de gusano con poca vida y daño bajo,
-                                    cuando se acumulan muchos de estos en un lugar, existe la posibilidad de que se
-                                    junten formen una especie de ave en la cual puden volar por muy pocos segundos.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/Girl.webp' %}" alt="" class="imagen img-fluid centrart"><br>Niña</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este mutante aparece despues de completar el juego una vez, es una
-                                    variante del jefe final pero mas debil.</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="centrart"><img src="{% static 'wiki/img/Enemigos/EndBoss.webp' %}" alt="" class="imagen img-fluid centrart"><br>Jefe final</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p class="center-titulo tamannioletrat">Mutante</p>
-                            </div>
-                            <div class="col-sm-4 border border-secondary fondo-tabla center">
-                                <p>Este enemigo es unico en el juego ya que es el jefe final de este,
-                                    suvida es elevadisima y su daño es intermedio, pero sus ataques te desestabilizan y
-                                    tienen mucho rango, haciendolo de los enemigos mas dificiles.</p>
-                            </div>
-                        </div>
+                        </div>    
+                        {% endfor %}   
                     </div>
                 </div>
             </div>

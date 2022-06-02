@@ -66,9 +66,7 @@
                 </div>
                 <div class="w-33">
                     <div class="center">
-                      <button class="btn btn-dark">
-                        Editar
-                      </button>
+                      <a href="{% url 'FormularioTablas' %}" class="btn btn-dark">Añadir</a>
                     </div>
                   </div>
                 
@@ -111,14 +109,14 @@
                                 <p class="center-titulo">{{ l.usuario }}<span><br>{{ l.f_creacion }}</p>
                             </div>
                             <div class="col-sm-2 border border-secondary fondo-tabla center">
-                                <p><img src="{{ l.foto.url }}" alt="" class="imagen img-fluid"><br>{{ l.nom_dato }}</p>
+                                <p class="center-titulo"><img src="{{ l.foto.url }}" alt="" class="imagen img-fluid"><br>{{ l.nom_dato }}</p>
                             </div>
                             <div class="col-sm-5 border border-secondary fondo-tabla center">
                                 <p class="center-titulo">{{ l.descripcion }}</p>
                             </div>
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
-
+                                    <div class="col-md-6"><a href="#" class="btn btn-info">Editar</a></div>
                                     <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema %}" class="btn btn-danger">Eliminar</a></div>
                                 </div>
                             </div>
