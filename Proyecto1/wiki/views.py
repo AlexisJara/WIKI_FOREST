@@ -1,4 +1,5 @@
 from cgitb import html
+import re
 from turtle import update
 from django.shortcuts import render, redirect
 from .models import Comentario, Tabla, TipoUsuario, Usuario,Estado
@@ -12,7 +13,9 @@ def menuprincipal(request):
 
 def Animales(request):
 
-    return render(request ,'wiki/Animales.html')
+    listadoTabla = Tabla.objects.filter(categoria = 3)
+
+    return render(request ,'wiki/Animales.html', {"listados" : listadoTabla})
 
 def Armas(request):
 
@@ -35,8 +38,11 @@ def Enemigos(request):
     return render(request , 'wiki/Enemigos.html',{"listados" : listadoTabla})
 
 def Flora(request):
+    
+    listadoTabla = Tabla.objects.filter(categoria = 4)
 
-    return render(request ,'wiki/Flora.html')
+    return render(request , 'wiki/Flora.html',{"listados" : listadoTabla})
+
 
 def forowiki(request):
 
@@ -54,7 +60,9 @@ def inicio_sesion(request):
 
 def Logros(request):
 
-    return render(request ,'wiki/Logros.html')
+    listadoTabla = Tabla.objects.filter(categoria = 5)
+
+    return render(request , 'wiki/Logros.html',{"listados" : listadoTabla})
 
 def Lugares(request):
 
@@ -88,6 +96,10 @@ def ModificarC(request):
 def FormularioTablas(request):
 
     return render(request, 'wiki/FormularioTablas.html')
+
+def EditarTablas(request, id_tema):
+    listadoTabla = Tabla.objects.get(id_tema = id_tema)
+    return render(request ,'wiki/EditarTablas.html', {"listados":listadoTabla})
 
 def registrar_usuario(request):
     nombre_u = request.POST['validationCustom01']
@@ -197,5 +209,26 @@ def modificarC2(request):
     usuario.save()
     messages.success(request, 'Usuario Modificado')
     return redirect('Micuenta')
+
+def modificarTabla(request):
+    id_tema = request.POST['id_t']
+    categoriat = request.POST['categoria']
+    fotot = request.FILES['foto']
+    nodato = request.POST['nombreDato']
+    tipoDato = request.POST['tipodato']
+    Descripcion = request.POST['descripcion']
+    fech = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+
+    listadoTabla = Tabla.objects.get(id_tema = id_tema)
+
+    listadoTabla.categoria = categoriat
+    listadoTabla.foto = fotot
+    listadoTabla.nom_dato = nodato
+    listadoTabla.tipodato = tipoDato
+    listadoTabla.descripcion = Descripcion
+    listadoTabla.f_creacion = fech
+    listadoTabla.save()
+
+    return redirect('menuprincipal')
 
 

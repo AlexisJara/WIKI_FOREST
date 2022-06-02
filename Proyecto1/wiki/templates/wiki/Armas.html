@@ -82,7 +82,7 @@
                     
                     <h5 class="center margin-tabla">Orden de datos:</h5>
                     
-                    <p class="center">1er bloque = Numero<br>2do bloque = Imagen arma<br>3er bloque = Nombre arma<br>4to bloque = Tipo arma<br>5to bloque = Descripcion arma</p>
+                    <p class="center">1er bloque = Usuario<br>2do bloque = Arma<br>3er bloque = Descripcion</p>
                     
                     
                 </div>
@@ -116,7 +116,7 @@
                             </div>
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
-                                    <div class="col-md-6"><a href="#" class="btn btn-info">Editar</a></div>
+                                    <div class="col-md-6"><a href="{% url 'EditarTablas' l.id_tema %}" class="btn btn-info">Editar</a></div>
                                     <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema %}" class="btn btn-danger">Eliminar</a></div>
                                 </div>
                             </div>

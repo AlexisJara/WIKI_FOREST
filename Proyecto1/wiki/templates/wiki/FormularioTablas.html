@@ -52,16 +52,18 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="{% url 'registroTabla' %}" method="POST" id="form">
+                <form action="" method="POST" id="form">
                     {% csrf_token %}
                     <h1 class="label-color">Aporta tu conocimiento!</h1>
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
                         <select name="" id="categoria" class="form-select margin-abajo">
-                            <option selected>Elige una categoria</option>   
+                            <option selected value="mal">Elige una categoria</option>   
                             <option value="1">Armas</option>
                             <option value="2">Enemigos</option>
-                            <option value="3">Flora</option>
+                            <option value="3">Animales</option>
+                            <option value="4">Flora</option>
+                            <option value="5">Logros</option>
                         </select>
                     </div>
                     <div>
@@ -69,13 +71,13 @@
                         <input type="file" id="foto" class="form-control margin-abajo">
                     </div>
                     <div>
-                        <label for="" class="label-color">Nombre de Enemigo/Flora/Arma</label>
-                        <input type="text" id="validationCustom01" class="form-control margin-abajo">
+                        <label for="" class="label-color">Nombre de Enemigo/Flora/Arma/Logro/Animal</label>
+                        <input type="text" id="nombreDato" class="form-control margin-abajo">
                     </div>
                     <div>
                         <label for="" class="label-color">Tipo de dato</label>
                         <input type="text" id="tipodato" class="form-control margin-abajo">
-                        <p class="label-color">Enemigos = Canibal/Mutante<br>Flora = Comestible/Venenosa<br>Armas = Hacha/Espada/Herramienta</p>
+                        <p class="label-color">Enemigos = Canibal/Mutante<br>Flora = Comestible/Venenosa<br>Armas = Hacha/Espada/Herramienta<br>Logro = Visible/Oculto<br>Animal = Pasivo/Agresivo</p>
                     </div>
                     <div>
                         <label for="" class="label-color">Descripcion</label>
