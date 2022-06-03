@@ -53,6 +53,7 @@ urlpatterns = [
     path('modificarTabla/', modificarTabla, name='modificarTabla'),
     path('AñadirComentario', añadirComentario, name='añadirComentario'),
     
+    
 
     
 
