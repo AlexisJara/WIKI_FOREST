@@ -248,7 +248,7 @@ def modificarTabla(request):
 
     return redirect('menuprincipal')
 
-def AñadirComentario(request):
+def aniadirComentario(request):
     usut = request.POST('usuarioa')
     dtema = request.POST('tema')
     comentariou = request.POST('Comentario')

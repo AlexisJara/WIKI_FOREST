@@ -15,7 +15,7 @@ Including another URLconf
 """
 from unicodedata import name
 from django.urls import path
-from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, añadirComentario
+from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, aniadirComentario
 
 urlpatterns = [
     path('', menuprincipal, name='menuprincipal'),
@@ -51,7 +51,7 @@ urlpatterns = [
     path('listadoForo/', listadoForo, name='listadoForo'),
     path('ini_sesion/', ini_sesion, name='ini_sesion'),
     path('modificarTabla/', modificarTabla, name='modificarTabla'),
-    path('AñadirComentario', añadirComentario, name='añadirComentario'),
+    path('AniadirComentario', aniadirComentario, name='aniadirComentario'),
     
     
 
