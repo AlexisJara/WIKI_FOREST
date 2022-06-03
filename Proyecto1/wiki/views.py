@@ -68,9 +68,10 @@ def Lugares(request):
 
     return render(request ,'wiki/Lugares.html')
 
-def Micuenta(request):
-    
-    return render(request ,'wiki/Micuenta.html')
+def Micuenta(request, id_usuario):
+    cuenta = Usuario.objects.get(id_usuario = id_usuario)
+
+    return render(request ,'wiki/Micuenta.html',{"cuenta":cuenta})
 
 def Recuperarcontra(request):
 
@@ -205,7 +206,7 @@ def borrarComentario(request, id_comentario):
     return redirect('forowiki')
 
 
-def modificarC2(request):
+def modificarC2(request,id_usuario):
     nombre_u = request.POST['nombre']
     apellido_u = request.POST['apellido']
     nomusuario_u = request.POST['nomusuario']
@@ -225,7 +226,7 @@ def modificarC2(request):
    
     Usuario.objects.update(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u)
     usuario.save()
-    messages.success(request, 'Usuario Modificado')
+    messages.success(request,'Usuario Modificado')
     return redirect('Micuenta')
 
 def modificarTabla(request):

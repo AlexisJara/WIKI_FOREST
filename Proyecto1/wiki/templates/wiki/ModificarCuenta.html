@@ -53,7 +53,9 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
+              {% for m in listados %}
                 <form class="row g-3 needs-validation" action="{% url 'ModificarCuenta2' %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
+                  {% endfor %}
                     {% csrf_token %}
                     <h1 class="label-color">Edita tu Usuario!</h1>
                     {% if messages %}
@@ -64,8 +66,10 @@
                           </div>
                           {% endif %}
                     <div>
+                      {% if user.is_authenticated %}
                         <label for="" class="label-color">Nombre</label>
                         <input type="text" value="{{listados.nombre}}" class="form-control margin-abajo" id="nombre" required>
+                        {% endif %}
                     </div>
                     <div>
                         <label for="" class="label-color">Apellido</label>
@@ -102,6 +106,7 @@
                     <div class="center">
                         <p class="warnings" id="warnings"></p></div>
                 </form>
+              
             </div>
             <div class="col-md-3"></div>
         </div>
