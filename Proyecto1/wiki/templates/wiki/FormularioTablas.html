@@ -57,14 +57,12 @@
                     <h1 class="label-color">Aporta tu conocimiento!</h1>
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
+                        {% for c in categoria %}
                         <select name="" id="categoria" class="form-select margin-abajo">
                             <option selected value="mal">Elige una categoria</option>   
-                            <option value="1">Armas</option>
-                            <option value="2">Enemigos</option>
-                            <option value="3">Animales</option>
-                            <option value="4">Flora</option>
-                            <option value="5">Logros</option>
+                            <option value="{{ c.id_categoria }}">{{ c.nombre }}</option>
                         </select>
+                        {% endfor %}
                     </div>
                     <div>
                         <label for="" class="label-color">Imagen</label>
