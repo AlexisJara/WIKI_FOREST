@@ -57,12 +57,26 @@
 
 <div class="container">
     <H5>Comparte tus temas con la comunidad!</H5>
+    {% if messages %}
+    <div>
+      {% for i in messages %}
+      <p style="color: red;">{{ i }}</p>
+      {% endfor %}
+    </div>
+
+    {% endif %}
     <div class="row comentarios justify-content-center">
         <div class="col-6">
             <form action="" class="form_comentarios d-flex justify-content-end flex-wrap">
                 {% csrf_token %}
-                <input type="text" placeholder="tema" class="form-control margin-tema" required>
-                <textarea name="" id="" placeholder="Comentario" class="form-control" required></textarea>
+                <div>
+                  <label for="" class="label-color">Nombre de autor</label>
+                  {% if user.is_authenticated %}
+                  <input type="text" id="usuarioa" class="form-control margin-abajo" value="{{user.username}}" readonly>
+                  {% endif %}
+                </div>
+                <input type="text" placeholder="tema" id="tema" class="form-control margin-tema" required>
+                <textarea name="" id="Comentario" placeholder="Comentario" class="form-control" required></textarea>
                 <button class="btn margin-bot" type="reset" >Borrar</button>
                 <button class="btn " type="submit">Comentar</button>
             </form>

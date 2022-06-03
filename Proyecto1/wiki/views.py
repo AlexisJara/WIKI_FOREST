@@ -180,6 +180,7 @@ def borrarContenido(request, id_tema):
     return redirect('Armas')
 
 def registroTabla(request):
+    usut = request.POST['usuarioa']
     categoriat = request.POST['categoria']
     fotot = request.FILES['foto']
     nomDato = request.POST['nombreDato']
@@ -189,7 +190,7 @@ def registroTabla(request):
 
     estadoDato = Estado.objects.get(id_estado = 1)
 
-    Tabla.objects.create(categoria = categoriat, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
+    Tabla.objects.create(usuario = usut,categoria = categoriat, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
     messages.success(request,'Dato registrado')
     return redirect('menuprincipal')
 
@@ -225,6 +226,7 @@ def modificarC2(request):
     return redirect('Micuenta')
 
 def modificarTabla(request):
+    usut = request.POST['usuarioa']
     id_tema = request.POST['id_t']
     categoriat = request.POST['categoria']
     fotot = request.FILES['foto']
@@ -235,6 +237,7 @@ def modificarTabla(request):
 
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
 
+    listadoTabla.usuario = usut
     listadoTabla.categoria = categoriat
     listadoTabla.foto = fotot
     listadoTabla.nom_dato = nodato
@@ -245,4 +248,14 @@ def modificarTabla(request):
 
     return redirect('menuprincipal')
 
+def AñadirComentario(request):
+    usut = request.POST('usuarioa')
+    dtema = request.POST('tema')
+    comentariou = request.POST('Comentario')
+    fcreacion = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
 
+    estadoDato = Estado.objects.get(id_estado = 1)
+
+    Comentario.objects.create(usuario = usut, titulo_com = dtema, texto = comentariou, f_creacion = fcreacion, estado = estadoDato)
+    messages.success(request,'Comentario añadido')
+    return redirect('forowiki')

@@ -52,9 +52,15 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="" method="POST" id="form">
+                <form action="{% url 'registroTabla' %}" method="POST" id="form">
                     {% csrf_token %}
                     <h1 class="label-color">Aporta tu conocimiento!</h1>
+                    <div>
+                        <label for="" class="label-color">Usuario autor</label>
+                        {% if user.is_authenticated %}
+                        <input type="text" id="usuarioa" class="form-control margin-abajo" value="{{user.username}}" readonly>
+                        {% endif %}
+                    </div>
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
                         {% for c in categoria %}

@@ -13,8 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from unicodedata import name
 from django.urls import path
-from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo, EditarTablas, modificarTabla
+from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, añadirComentario
 
 urlpatterns = [
     path('', menuprincipal, name='menuprincipal'),
@@ -49,7 +50,8 @@ urlpatterns = [
     path('listado/', listado, name='listado'),
     path('listadoForo/', listadoForo, name='listadoForo'),
     path('ini_sesion/', ini_sesion, name='ini_sesion'),
-    path('modificarTabla/', modificarTabla, name='modificarTabla')
+    path('modificarTabla/', modificarTabla, name='modificarTabla'),
+    path('AñadirComentario', añadirComentario, name='añadirComentario'),
     
 
     
