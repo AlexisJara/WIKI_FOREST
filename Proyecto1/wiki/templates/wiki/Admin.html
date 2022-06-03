@@ -85,7 +85,7 @@
                       <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
                       {% if l.estado == 1 %}
                         <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Banear</a></td>
-                      {% elif l.estado == 21 %}
+                      {% elif l.estado == 2 %}
                         <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Desbanear</a></td>
                       {% endif %}
                       <td><a href="{% url 'eliminarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>

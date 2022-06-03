@@ -67,10 +67,13 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
-                        {% for c in categoria %}
                         <select name="" id="categoria" class="form-select margin-abajo">
-                            <option selected value="mal">Elige una categoria</option>   
-                            <option value="{{ c.id_categoria }}">{{ c.nombre }}</option>
+                            {% for c in categoria %}
+                                {% if c.id_catecoria == listados.categoria.id_categoria %}
+                                    <option value="{{ listados.categoria.id_categoria }}" selected>{{ listados.categoria.nombre }}</option> 
+                                {% else %}
+                                    <option value="{{ c.id_categoria }}">{{ c.nombre }}</option>
+                                {% endif %}
                         </select>
                         {% endfor %}
                     </div>
