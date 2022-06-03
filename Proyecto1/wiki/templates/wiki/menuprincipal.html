@@ -42,8 +42,20 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Micuenta' %}">Mi Cuenta</a>
+                  <a class="nav-link" href="{% url 'Micuenta' %}">Mi cuentaaa</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Micuenta' %}">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion.</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'Admin' %}">Admin</a>
                 </li>
