@@ -52,4 +52,6 @@ urlpatterns = [
     path('modificarTabla/', modificarTabla, name='modificarTabla')
     
 
+    
+
 ]

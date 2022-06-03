@@ -135,11 +135,14 @@ def ini_sesion(request):
         usuario2 = Usuario.objects.get(id_usuario = usuario1 , clave = contra)
         if(usuario2.tipousuario.id_tipo == 2):
             return redirect ('menuprincipal')
+        elif(usuario2.tipousuario.id_tipo == 1):
+            return redirect ('Admin')
         else:
             return redirect ('Registrarse')
     except:
         messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
         return redirect ('inicio-sesion')
+
 
 def listado(request):
     listadoUsuario = Usuario.objects.all()
