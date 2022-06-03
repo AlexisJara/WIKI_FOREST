@@ -60,10 +60,10 @@
     <div class="row comentarios justify-content-center">
         <div class="col-6">
             <form action="" class="form_comentarios d-flex justify-content-end flex-wrap">
+                {% csrf_token %}
                 <input type="text" placeholder="tema" class="form-control margin-tema" required>
                 <textarea name="" id="" placeholder="Comentario" class="form-control" required></textarea>
                 <button class="btn margin-bot" type="reset" >Borrar</button>
-                <button class="btn margin-bot" type="button" >Agregar imagen</button>
                 <button class="btn " type="submit">Comentar</button>
             </form>
             {% for l in listados %}

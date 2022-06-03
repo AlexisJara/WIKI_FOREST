@@ -2,7 +2,7 @@ from cgitb import html
 import re
 from turtle import update
 from django.shortcuts import render, redirect
-from .models import Comentario, Tabla, TipoUsuario, Usuario,Estado
+from .models import Categoria, Comentario, Tabla, TipoUsuario, Usuario,Estado
 from django.contrib import messages
 import datetime
 # Create your views here.
@@ -95,11 +95,22 @@ def ModificarC(request):
 
 def FormularioTablas(request):
 
-    return render(request, 'wiki/FormularioTablas.html')
+    categoria1 = Categoria.objects.all()
+
+    contexto = {
+        "categoria":categoria1
+    }
+
+    return render(request, 'wiki/FormularioTablas.html', contexto)
 
 def EditarTablas(request, id_tema):
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
-    return render(request ,'wiki/EditarTablas.html', {"listados":listadoTabla})
+    categoria1 = Categoria.objects.all()
+
+    contexto = {
+        "categoria":categoria1
+    }
+    return render(request ,'wiki/EditarTablas.html', {"listados":listadoTabla}, contexto)
 
 def registrar_usuario(request):
     nombre_u = request.POST['validationCustom01']
