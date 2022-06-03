@@ -256,13 +256,13 @@ def modificarTabla(request):
     return redirect('menuprincipal')
 
 def aniadirComentario(request):
-    usut = request.POST('usuarioa')
-    dtema = request.POST('tema')
-    comentariou = request.POST('Comentario')
-    fcreacion = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    usut = request.POST.get('usuarioa')
+    dtema = request.POST.get('tema')
+    comentariou = request.POST.get('Comentario')
+
 
     estadoDato = Estado.objects.get(id_estado = 1)
 
-    Comentario.objects.create(usuario = usut, titulo_com = dtema, texto = comentariou, f_creacion = fcreacion, estado = estadoDato)
+    Comentario.objects.create(usuario = usut, titulo_com = dtema, texto = comentariou, f_creacion = datetime.datetime.now(), estado = estadoDato)
     messages.success(request,'Comentario añadido')
     return redirect('forowiki')

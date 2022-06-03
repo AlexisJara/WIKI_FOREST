@@ -65,8 +65,7 @@
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
                         {% for c in categoria %}
                         <select name="" id="categoria" class="form-select margin-abajo">
-                            <option selected value="mal">Elige una categoria</option>   
-                            <option value="{{ c.id_categoria }}">{{ c.nombre }}</option>
+                            <option value="{{ c.id_categoria }}" selected>{{ c.nombre }}</option>
                         </select>
                         {% endfor %}
                     </div>

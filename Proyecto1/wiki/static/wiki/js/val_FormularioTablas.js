@@ -7,7 +7,6 @@ var mensaje = document.getElementById("warnings");
 
 
 form.addEventListener("submit", e => {
-    e.preventDefault();
     let mensajesMostrar = "";
     let entrar = false;
     mensaje.innerHTML = "";
