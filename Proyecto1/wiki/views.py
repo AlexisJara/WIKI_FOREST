@@ -184,6 +184,7 @@ def borrarContenido(request, id_tema):
 def registroTabla(request):
     usut = request.POST['usuarioa']
     categoriat = request.POST['categoria']
+    categoriat2 = Categoria.objects.get(id_categoria = categoriat)
     fotot = request.FILES['foto']
     nomDato = request.POST['nombreDato']
     tipoDato = request.POST['tipodato']
@@ -192,7 +193,7 @@ def registroTabla(request):
 
     estadoDato = Estado.objects.get(id_estado = 1)
 
-    Tabla.objects.create(usuario = usut,categoria = categoriat, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
+    Tabla.objects.create(usuario = usut,categoria = categoriat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
     messages.success(request,'Dato registrado')
     return redirect('menuprincipal')
 
@@ -231,7 +232,11 @@ def modificarTabla(request):
     usut = request.POST['usuarioa']
     id_tema = request.POST['id_t']
     categoriat = request.POST['categoria']
-    fotot = request.FILES['foto']
+    categoriat2 = Categoria.objects.get(id_categoria = categoriat)
+    if(request.POST.get('foto')):
+        fotot = request.FILES['foto']
+        listadoTabla.foto = fotot
+
     nodato = request.POST['nombreDato']
     tipoDato = request.POST['tipodato']
     Descripcion = request.POST['descripcion']
@@ -240,8 +245,7 @@ def modificarTabla(request):
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
 
     listadoTabla.usuario = usut
-    listadoTabla.categoria = categoriat
-    listadoTabla.foto = fotot
+    listadoTabla.categoria = categoriat2
     listadoTabla.nom_dato = nodato
     listadoTabla.tipodato = tipoDato
     listadoTabla.descripcion = Descripcion
