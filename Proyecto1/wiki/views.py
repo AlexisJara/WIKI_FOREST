@@ -89,9 +89,11 @@ def Vcontra(request):
     
     return render(request , 'wiki/VerificarContra.html')
 
-def ModificarC(request):
+def ModificarC(request, id_usuario):
 
-    return render(request, 'wiki/ModificarCuenta.html')
+    listadoTabla = Tabla.objects.get(id_usuario = id_usuario)
+
+    return render(request, 'wiki/ModificarCuenta.html', {"listados":listadoTabla})
 
 def FormularioTablas(request):
 
