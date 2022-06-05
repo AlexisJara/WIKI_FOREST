@@ -99,12 +99,14 @@ def ModificarC(request, id_usuario):
 def FormularioTablas(request):
 
     categoria1 = Categoria.objects.all()
+    usuariost = Usuario.objects.all()
 
     contexto = {
-        "categoria":categoria1
+        "categoria":categoria1,
+        "usuariop":usuariost
     }
 
-    return render(request, 'wiki/FormularioTablas.html', contexto)
+    return render(request, 'wiki/FormularioTablas.html',contexto)
 
 def EditarTablas(request, id_tema):
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
@@ -141,10 +143,11 @@ def ini_sesion(request):
         elif(usuario2.tipousuario.id_tipo == 1):
             return redirect ('Admin')
         else:
-            return redirect ('Registrarse')
+            contexto = {"usuario":usuario2}
+            return redirect ('menuprincipal')
     except:
         messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
-        return redirect ('inicio-sesion')
+        return redirect ('inicio-sesion',contexto)
 
 
 def listado(request):
@@ -183,18 +186,19 @@ def borrarContenido(request, id_tema):
     return redirect('Armas')
 
 def registroTabla(request):
-    usut = request.POST['usuarioa']
-    categoriat = request.POST['categoria']
-    categoriat2 = Categoria.objects.get(id_categoria = categoriat)
-    fotot = request.FILES['foto']
-    nomDato = request.POST['nombreDato']
-    tipoDato = request.POST['tipodato']
-    desDato = request.POST['descripcion']
-    fecDato = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    usut = request.POST.get('usuarioa')
+
+    categoriat = request.POST.get('categoria')
+    cat2 = Categoria.objects.get(id_categoria=categoriat)
+    fotot = request.FILES.get('foto')
+    nomDato = request.POST.get('nombreDato')
+    tipoDato = request.POST.get('tipodato')
+    desDato = request.POST.get('descripcion')
+    fecDato = datetime.datetime.now()
 
     estadoDato = Estado.objects.get(id_estado = 1)
 
-    Tabla.objects.create(usuario = usut,categoria = categoriat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
+    Tabla.objects.create(usuario = usut,categoria = cat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
     messages.success(request,'Dato registrado')
     return redirect('menuprincipal')
 
@@ -241,7 +245,7 @@ def modificarTabla(request):
     nodato = request.POST['nombreDato']
     tipoDato = request.POST['tipodato']
     Descripcion = request.POST['descripcion']
-    fech = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    fech = datetime.datetime.now()
 
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
 

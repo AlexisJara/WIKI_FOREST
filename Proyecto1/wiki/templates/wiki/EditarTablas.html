@@ -52,14 +52,14 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="{% url 'modificarTabla' %}" method="POST" id="form">
+                <form action="{% url 'modificarTabla' %}" method="POST" enctype="multipart/form-data" id="form">
                     {% csrf_token %}
                     <h1 class="label-color">Aporta tu conocimiento!</h1>
                     <div>
                         <label for="" class="label-color">Usuario autor</label>
-                        {% if user.is_authenticated %}
-                        <input type="text" id="usuarioa" class="form-control margin-abajo" value="{{user.username}}" readonly>
-                        {% endif %}
+                        
+                        <input type="text" id="usuarioa" class="form-control margin-abajo" value="{{ listados.usuario }}" readonly>
+                        
                     </div>
                     <div>
                         <label for="" class="label-color">Numero de dato</label>
@@ -69,7 +69,7 @@
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
                         <select name="" id="categoria" class="form-select margin-abajo">
                             {% for c in categoria %}
-                                {% if c.id_catecoria == listados.id_categoria.categoria %}
+                                {% if c.id_categoria == listados.id_categoria.categoria %}
                                     <option value="{{ listados.categoria.id_categoria }}" selected>{{ listados.categoria.nombre }}</option> 
                                 {% else %}
                                     <option value="{{ c.id_categoria }}">{{ c.nombre }}</option>

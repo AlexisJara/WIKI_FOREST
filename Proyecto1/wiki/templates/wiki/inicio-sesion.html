@@ -87,7 +87,7 @@
                 </div>
                 <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
                 <h1 class="font-weight-bold mb-4" id="subir">Bienvenido Ingresa tu Usuario</h1>
-                <form class="mb-5" action="{% url 'ini_sesion' %}"  method="POST" id="formulario">
+                <form class="mb-5" action="{% url 'ini_sesion' %}"  method="POST" enctype="multipart/form-data" id="formulario">
                   {% csrf_token %}
                   {% if messages %}
                           <div>
