@@ -15,6 +15,8 @@ Including another URLconf
 """
 from unicodedata import name
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario,listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, aniadirComentario
 
 urlpatterns = [
@@ -53,8 +55,5 @@ urlpatterns = [
     path('modificarTabla/<id_usuario>', modificarTabla, name='modificarTabla'),
     path('AniadirComentario/<id>', aniadirComentario, name='aniadirComentario'),
     
-    
-
-    
-
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
