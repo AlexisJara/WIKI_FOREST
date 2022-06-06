@@ -86,13 +86,6 @@
                       <div class="margin-formulario">
                         <form class="row g-3 needs-validation" action="{% url 'registro' %}" method="POST" enctype="multipart/form-data" id="form" name="form" novalidate>
                           {% csrf_token %}
-                          {% if messages %}
-                          <div>
-                            {% for i in messages %}
-                              <p style="color: red;">{{ i }}</p>
-                              {% endfor %}
-                          </div>
-                          {% endif %}
                           <div class="col-md-6">
                             <label for="validationCustom01" class="form-label font-weight-bold">Nombre</label>
                             <input type="text" class="form-control bg-dark-x border-0" id="validationCustom01" name="validationCustom01"

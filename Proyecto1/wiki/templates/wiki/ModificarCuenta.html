@@ -68,13 +68,7 @@
 
                     {% csrf_token %}
                     <h1 class="label-color">Edita tu Usuario!</h1>
-                    {% if messages %}
-                          <div>
-                            {% for i in messages %}
-                              <p style="color: white;">{{ i }}</p>
-                            {% endfor %}
-                          </div>
-                    {% endif %}
+                    
                     <div>
                       
                         <label for="" class="label-color">Nombre</label>
