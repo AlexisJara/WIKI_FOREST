@@ -33,9 +33,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'Foro' %}">Foro</a>
-            </li>
+            {% if usuario %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Foro' usuario.id_usuario %}">Foro</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link"
                 href="https://www.google.com/maps/place/R%C3%ADo+Imperial+460,+Valle+Grande,+Lampa,+Regi%C3%B3n+Metropolitana/@-33.3295809,-70.751195,17z/data=!3m1!4b1!4m5!3m4!1s0x9662bf62531dc747:0xc0b4aee73c3b9373!8m2!3d-33.3295854!4d-70.7490063?hl=es-CL">Dirección</a>
@@ -43,12 +45,19 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'Registrarse' %}">Registrarse</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'Micuenta' %}">Mi Cuenta</a>
-            </li>
+            
+            {% if usuario %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Micuenta' usuario.id_usuario %}">{{ usuario.id_usuario }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
+              </li>
+            {% endif %}
             <li class="nav-item">   
               <a class="nav-link" href="{% url 'Admin' %}">Admin</a>
             </li>
@@ -78,18 +87,18 @@
                   </thead>
                   <tbody>
                     {% for l in listados %}
-                    <tr>
-                      <td>{{l.id_usuario}}</td>
-                      <td>{{l.correo}}</td>
-                      <td>{{l.estado}}</td>
-                      <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
-                      {% if l.estado == 1 %}
-                        <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Banear</a></td>
-                      {% elif l.estado == 2 %}
-                        <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Desbanear</a></td>
-                      {% endif %}
-                      <td><a href="{% url 'eliminarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
-                    </tr>
+                      <tr>
+                        <td>{{l.id_usuario}}</td>
+                        <td>{{l.correo}}</td>
+                        <td>{{l.estado}}</td>
+                        <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
+                        {% if l.estado == 1 %}
+                          <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Banear</a></td>
+                        {% elif l.estado == 2 %}
+                          <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Desbanear</a></td>
+                        {% endif %}
+                        <td><a href="{% url 'eliminarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
+                      </tr>
                     {% endfor %}
                   </tbody>
                 </table>

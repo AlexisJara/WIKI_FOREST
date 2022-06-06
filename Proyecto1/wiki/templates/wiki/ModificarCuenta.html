@@ -23,21 +23,30 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
               </li>
+              {% if usuario %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'Foro' %}">Foro</a>
+                <a class="nav-link" href="{% url 'Foro' usuario.id_usuario %}">Foro</a>
               </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="https://www.google.com/maps/place/R%C3%ADo+Imperial+460,+Valle+Grande,+Lampa,+Regi%C3%B3n+Metropolitana/@-33.3295809,-70.751195,17z/data=!3m1!4b1!4m5!3m4!1s0x9662bf62531dc747:0xc0b4aee73c3b9373!8m2!3d-33.3295854!4d-70.7490063?hl=es-CL">Dirección</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'Registrarse' %}">Registrarse</a>
                 </li>
+                {% if usuario %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Micuenta' usuario.id_usuario %}">{{ usuario.id_usuario }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                </li>
+                
+                {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Micuenta' %}">Mi Cuenta</a>
-                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Admin' %}">Admin</a>
                   </li>
@@ -53,47 +62,48 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-              {% for m in listados %}
-                <form class="row g-3 needs-validation" action="{% url 'ModificarCuenta2' %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
-                  {% endfor %}
+              {% if usuario %}
+              
+                <form class="row g-3 needs-validation" action="{% url 'ModificarCuenta2' usuario.id_usuario %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
+
                     {% csrf_token %}
                     <h1 class="label-color">Edita tu Usuario!</h1>
                     {% if messages %}
                           <div>
                             {% for i in messages %}
                               <p style="color: white;">{{ i }}</p>
-                              {% endfor %}
+                            {% endfor %}
                           </div>
-                          {% endif %}
+                    {% endif %}
                     <div>
-                      {% if user.is_authenticated %}
+                      
                         <label for="" class="label-color">Nombre</label>
-                        <input type="text" value="{{listados.nombre}}" class="form-control margin-abajo" id="nombre" required>
-                        {% endif %}
+                        <input type="text" value="{{usuario.nombre}}" class="form-control margin-abajo" id="nombre" name="nombre" required>
+                        
                     </div>
                     <div>
                         <label for="" class="label-color">Apellido</label>
-                        <input type="text" value="{{listados.apellido}}" class="form-control margin-abajo" id="apellido" required>
+                        <input type="text" value="{{usuario.apellido}}" class="form-control margin-abajo" id="apellido" name="apellido" required>
                     </div>
                     <div>
                         <label for="" class="label-color">Nombre de usuario</label>
-                        <input type="text" value="{{listados.id_usuario}}" class="form-control margin-abajo" id="nomusuario" required>
+                        <input type="text" value="{{usuario.id_usuario}}" class="form-control margin-abajo" id="nomusuario" name="nomusuario" readonly>
                     </div>
                     <div>
                         <label for="" class="label-color">Imagen</label>
-                        <input type="file" value="{{listados.foto}}" id="foto" class="form-control margin-abajo" required>
+                        <input type="file" value="{{usuario.foto}}" id="foto" name="foto" class="form-control margin-abajo" required>
                     </div>
                     <div>
                         <label for="" class="label-color">Correo</label>
-                        <input type="text" value="{{listados.correo}}" id="correo" class="form-control margin-abajo" required>
+                        <input type="text" value="{{usuario.correo}}" id="correo" name="correo" class="form-control margin-abajo" required>
                     </div>
                     <div>
                         <label for="" class="label-color">Clave</label>
-                        <input type="password" value="{{listados.clave}}" id="Clave1" class="form-control margin-abajo" required>
+                        <input type="password" value="{{usuario.clave}}" id="Clave1" name="Clave1" class="form-control margin-abajo" required>
                     </div>
                     <div>
                         <label for="" class="label-color">Repetir clave</label>
-                        <input type="password" value="{{listados.clave}}" id="Clave2" class="form-control margin-abajo" required>
+                        <input type="password" value="{{usuario.clave}}" id="Clave2" name="Clave2" class="form-control margin-abajo" required>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -106,7 +116,7 @@
                     <div class="center">
                         <p class="warnings" id="warnings"></p></div>
                 </form>
-              
+            {% endif %}
             </div>
             <div class="col-md-3"></div>
         </div>

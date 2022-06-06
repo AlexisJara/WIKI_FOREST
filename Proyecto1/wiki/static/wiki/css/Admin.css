@@ -33,7 +33,7 @@
 }
 
 .margin-abajo{
-    margin-top: 20px;
+    margin-top: 90px;
 }
 
 .margin-abajo-titulo{
@@ -56,10 +56,13 @@ footer {
     display: flex;
     flex-direction: column;
     text-align: center;
-	margin-top: 144px;
+	margin-top: 300px;
    
 }
 
+h1{
+    margin-bottom: 50px;
+}
 #fuente{
 	color: var(--rojo);
 	font-family: 'Bebas Neue', cursive;
@@ -83,6 +86,8 @@ body {
     
     font-family: 'Bebas Neue', cursive;
 }
+
+
 
 /*=====================================
 estilos de la utilidad

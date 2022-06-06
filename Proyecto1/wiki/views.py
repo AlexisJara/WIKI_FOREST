@@ -1,4 +1,5 @@
 from cgitb import html
+from multiprocessing import context
 import re
 from turtle import update
 from django.shortcuts import render, redirect
@@ -44,11 +45,15 @@ def Flora(request):
     return render(request , 'wiki/Flora.html',{"listados" : listadoTabla})
 
 
-def forowiki(request):
+def forowiki(request,id_usuario):
 
     listadoForo = Comentario.objects.all()
-    
-    return render(request , 'wiki/forowiki.html',{"listados" : listadoForo})
+    usu = Usuario.objects.get(id_usuario=id_usuario)
+    contexto={
+        "usuario":usu,
+        "listados":listadoForo
+    }
+    return render(request ,'wiki/forowiki.html',contexto)
 
 def Historia(request):
 
@@ -71,7 +76,7 @@ def Lugares(request):
 def Micuenta(request, id_usuario):
     cuenta = Usuario.objects.get(id_usuario = id_usuario)
 
-    return render(request ,'wiki/Micuenta.html',{"cuenta":cuenta})
+    return render(request ,'wiki/Micuenta.html',{"usuario":cuenta})
 
 def Recuperarcontra(request):
 
@@ -82,8 +87,8 @@ def Registrarse(request):
     return render(request ,'wiki/Registrarse.html')
 
 def Admin(request):
-
-    return render(request , 'wiki/Admin.html')
+    listadoUsuario = Usuario.objects.all()
+    return render(request , 'wiki/Admin.html',{"listados" : listadoUsuario})
 
 
 def Vcontra(request):
@@ -92,9 +97,9 @@ def Vcontra(request):
 
 def ModificarC(request, id_usuario):
 
-    listadoTabla = Tabla.objects.get(id_usuario = id_usuario)
+    listadoTabla = Usuario.objects.get(id_usuario = id_usuario)
 
-    return render(request, 'wiki/ModificarCuenta.html', {"listados":listadoTabla})
+    return render(request, 'wiki/ModificarCuenta.html', {"usuario":listadoTabla})
 
 def FormularioTablas(request):
 
@@ -113,9 +118,10 @@ def EditarTablas(request, id_tema):
     categoria1 = Categoria.objects.all()
 
     contexto = {
-        "categoria":categoria1
+        "categoria":categoria1,
+        "listados":listadoTabla
     }
-    return render(request ,'wiki/EditarTablas.html', {"listados":listadoTabla}, contexto)
+    return render(request ,'wiki/EditarTablas.html', contexto)
 
 def registrar_usuario(request):
     nombre_u = request.POST['validationCustom01']
@@ -138,16 +144,20 @@ def ini_sesion(request):
     contra = request.POST['contrasena']
     try:
         usuario2 = Usuario.objects.get(id_usuario = usuario1 , clave = contra)
+        
+        contexto ={
+            "usuario":usuario2
+        }
         if(usuario2.tipousuario.id_tipo == 2):
-            return redirect ('menuprincipal')
+            return render (request,'wiki/menuprincipal.html',contexto)
         elif(usuario2.tipousuario.id_tipo == 1):
-            return redirect ('Admin')
+            return render (request,'wiki/Admin.html',contexto)
         else:
-            contexto = {"usuario":usuario2}
+            
             return redirect ('menuprincipal')
     except:
         messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
-        return redirect ('inicio-sesion',contexto)
+        return redirect (request,'wiki/inicio-sesion.html',contexto)
 
 
 def listado(request):
@@ -185,7 +195,7 @@ def borrarContenido(request, id_tema):
 
     return redirect('Armas')
 
-def registroTabla(request):
+def registroTabla(request,id_usuario):
     usut = request.POST.get('usuarioa')
 
     categoriat = request.POST.get('categoria')
@@ -198,9 +208,12 @@ def registroTabla(request):
 
     estadoDato = Estado.objects.get(id_estado = 1)
 
+    contexto={
+        "usuario":id_usuario
+    }
     Tabla.objects.create(usuario = usut,categoria = cat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
     messages.success(request,'Dato registrado')
-    return redirect('menuprincipal')
+    return render(request,'wiki/menuprincipal.html',contexto)
 
 def borrarComentario(request, id_comentario):
     eliminar = Comentario.objects.get(id_comentario = id_comentario)
@@ -217,7 +230,10 @@ def modificarC2(request,id_usuario):
     avatar_u = request.FILES['foto']
     correo_u = request.POST['correo']
     clave_u = request.POST['Clave1']
-    clave_u2 = request.POST['Clave2']
+
+    contexto ={
+            "usuario":id_usuario
+        }
 
     usuario = Usuario.objects.get(id_usuario = nomusuario_u)
     usuario.nombre = nombre_u
@@ -225,17 +241,17 @@ def modificarC2(request,id_usuario):
     usuario.foto = avatar_u
     usuario.correo = correo_u
     usuario.clave = clave_u
-    usuario.clave = clave_u2
+
 
    
-    Usuario.objects.update(id_usuario = nomusuario_u, nombre = nombre_u, apellido = apellido_u, correo = correo_u, clave = clave_u, foto = avatar_u)
+
     usuario.save()
     messages.success(request,'Usuario Modificado')
-    return redirect('Micuenta')
+    return render(request,'wiki/Micuenta.html',contexto)
 
-def modificarTabla(request):
+def modificarTabla(request,id_usuario):
     usut = request.POST['usuarioa']
-    id_tema = request.POST['id_t']
+    id_tema = request.POST['idt']
     categoriat = request.POST['categoria']
     categoriat2 = Categoria.objects.get(id_categoria = categoriat)
     if(request.POST.get('foto')):
@@ -247,6 +263,10 @@ def modificarTabla(request):
     Descripcion = request.POST['descripcion']
     fech = datetime.datetime.now()
 
+    contexto ={
+            "usuario":id_usuario
+        }
+
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
 
     listadoTabla.usuario = usut
@@ -257,16 +277,26 @@ def modificarTabla(request):
     listadoTabla.f_creacion = fech
     listadoTabla.save()
 
-    return redirect('menuprincipal')
+    return render(request,'wiki/menuprincipal.html',contexto)
 
-def aniadirComentario(request):
-    usut = request.POST.get('usuarioa')
+def aniadirComentario(request,id):
     dtema = request.POST.get('tema')
     comentariou = request.POST.get('Comentario')
-
-
+    usut = Usuario.objects.get(id_usuario = id)
     estadoDato = Estado.objects.get(id_estado = 1)
 
-    Comentario.objects.create(usuario = usut, titulo_com = dtema, texto = comentariou, f_creacion = datetime.datetime.now(), estado = estadoDato)
-    messages.success(request,'Comentario añadido')
-    return redirect('forowiki')
+    contexto ={"usuario":usut}
+    
+    existe = None
+    try:
+        existe = Comentario.objects.get (texto =comentariou)
+        messages.error(request,'El Comentario ya existe')
+        return redirect('Foro')
+    
+    except:
+        Comentario.objects.create(titulo_com = dtema,f_creacion = datetime.datetime.now(), texto = comentariou, estado = estadoDato,usuario = usut)
+        messages.success(request,'Comentario añadido')
+        return render(request,'wiki/forowiki.html',contexto)
+
+    
+

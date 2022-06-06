@@ -25,11 +25,11 @@ urlpatterns = [
     path('Consumibles/', Consumibles, name='Consumibles'),
     path('Enemigos/', Enemigos, name='Enemigos'),
     path('Flora/', Flora, name='Flora'),
-    path('Foro/', forowiki, name='Foro'),
+    path('Foro/<id_usuario>', forowiki, name='Foro'),
     path('Inicio-sesion/', inicio_sesion, name='Inicio-sesion'),
     path('Logros/', Logros, name='Logros'),
     path('Lugares/', Lugares, name='Lugares'),
-    path('Micuenta/', Micuenta, name='Micuenta'),
+    path('Micuenta/<id_usuario>', Micuenta, name='Micuenta'),
     path('Recuperarcontra/', Recuperarcontra, name='Recuperarcontra'),
     path('Registrarse/', Registrarse, name='Registrarse'),
     path('Admin/', listado, name='Admin'),
@@ -40,18 +40,18 @@ urlpatterns = [
     path('banearUsuario/<id_usuario>', penalizarUsuario, name="banearUsuario"),
     path('VerificarContra/', Vcontra, name='VerificarContra'),
     path('ModificarCuenta/<id_usuario>', ModificarC, name="ModificarCuenta"),
-    path('ModificarCuenta2/', modificarC2, name="ModificarCuenta2"),
+    path('ModificarCuenta2/<id_usuario>', modificarC2, name="ModificarCuenta2"),
     path('FormularioTablas/', FormularioTablas, name='FormularioTablas'),
     path('EditarTablas/<int:id_tema>', EditarTablas, name='EditarTablas'),
     #Registrar datos en la tabla
-    path('registroTabla', registroTabla, name = 'registroTabla'),
+    path('registroTabla/<id_usuario>', registroTabla, name = 'registroTabla'),
     #Registrar datos de un usuario
     path('registro/', registrar_usuario, name='registro'),
     path('listado/', listado, name='listado'),
     path('listadoForo/', listadoForo, name='listadoForo'),
     path('ini_sesion/', ini_sesion, name='ini_sesion'),
-    path('modificarTabla/', modificarTabla, name='modificarTabla'),
-    path('AniadirComentario', aniadirComentario, name='aniadirComentario'),
+    path('modificarTabla/<id_usuario>', modificarTabla, name='modificarTabla'),
+    path('AniadirComentario/<id>', aniadirComentario, name='aniadirComentario'),
     
     
 

@@ -5,7 +5,7 @@ const form = document.getElementById("form2");
 var mensaje = document.getElementById("warnings");
 
 form.addEventListener("submit", e => {
-    e.preventDefault();
+
     let mensajesMostrar = "";
     let entrar = false;
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/

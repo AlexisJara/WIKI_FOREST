@@ -22,21 +22,30 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
               </li>
+              {% if usuario %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'Foro' %}">Foro</a>
+                <a class="nav-link" href="{% url 'Foro' usuario.id_usuario %}">Foro</a>
               </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="https://www.google.com/maps/place/R%C3%ADo+Imperial+460,+Valle+Grande,+Lampa,+Regi%C3%B3n+Metropolitana/@-33.3295809,-70.751195,17z/data=!3m1!4b1!4m5!3m4!1s0x9662bf62531dc747:0xc0b4aee73c3b9373!8m2!3d-33.3295854!4d-70.7490063?hl=es-CL">Dirección</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'Registrarse' %}">Registrarse</a>
                 </li>
+                {% if usuario %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Micuenta' usuario.id_usuario %}">{{ usuario.id_usuario }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                </li>
+                
+                {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Micuenta' %}">Mi Cuenta</a>
-                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'Admin' %}">Admin</a>
                   </li>
@@ -52,24 +61,26 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="{% url 'registroTabla' %}" method="POST" enctype="multipart/form-data" id="form">
+              {% if usuario %}
+                <form action="{% url 'registroTabla' usuario.id_usuario %}" method="POST" enctype="multipart/form-data" id="form">
                     {% csrf_token %}
                     <h1 class="label-color">Aporta tu conocimiento!</h1>
                     <div>
                         <label for="" class="label-color">Usuario autor</label>
 
-                        <select name="" id="usuarioa" class="form-select">
-                            {% for u in usuariop %}
-                            <option value="{{ u.id_usuario }}" selected>{{ u.id_usuario }}</option>
-                            {% endfor %}
+                        <select name="usuarioa" id="usuarioa" class="form-select">
+                            
+                            <option value="{{ usuario.id_usuario }}" selected>{{ usuario.id_usuario }}</option>
+                            
 
                         </select>
 
                     </div>
+              {% endif %}
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
                         
-                        <select name="" id="categoria" class="form-select margin-abajo">
+                        <select name="categoria" id="categoria" class="form-select margin-abajo">
                             {% for c in categoria %}
                             <option value="{{ c.id_categoria }}" selected>{{ c.nombre }}</option>
                             {% endfor %}
@@ -78,20 +89,20 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Imagen</label>
-                        <input type="file" id="foto" class="form-control margin-abajo">
+                        <input type="file" id="foto" name="foto" class="form-control margin-abajo">
                     </div>
                     <div>
                         <label for="" class="label-color">Nombre de Enemigo/Flora/Arma/Logro/Animal</label>
-                        <input type="text" id="nombreDato" class="form-control margin-abajo">
+                        <input type="text" id="nombreDato" name="nombreDato" class="form-control margin-abajo">
                     </div>
                     <div>
                         <label for="" class="label-color">Tipo de dato</label>
-                        <input type="text" id="tipodato" class="form-control margin-abajo">
+                        <input type="text" id="tipodato" name="tipodato" class="form-control margin-abajo">
                         <p class="label-color">Enemigos = Canibal/Mutante<br>Flora = Comestible/Venenosa<br>Armas = Hacha/Espada/Herramienta<br>Logro = Visible/Oculto<br>Animal = Pasivo/Agresivo</p>
                     </div>
                     <div>
                         <label for="" class="label-color">Descripcion</label>
-                        <textarea name="" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control"></textarea>
+                        <textarea name="descripcion" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control"></textarea>
                     </div>
                     <div class="row">
                         <div class="col">
