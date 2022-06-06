@@ -193,7 +193,7 @@ def borrarContenido(request, id_tema):
     eliminar.delete()
     messages.success(request, 'Contenido borrado')
 
-    return redirect('Armas')
+    return redirect('menuprincipal')
 
 def registroTabla(request,id_usuario):
     usut = request.POST.get('usuarioa')
