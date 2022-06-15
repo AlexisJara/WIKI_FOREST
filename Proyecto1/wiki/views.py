@@ -12,17 +12,20 @@ def menuprincipal(request):
 
     return render(request ,'wiki/menuprincipal.html')
 
-def Animales(request):
-
+def Animales(request,usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
     listadoTabla = Tabla.objects.filter(categoria = 3)
+    contexto = {"listados" : listadoTabla, "usuario" : usuario}
 
-    return render(request ,'wiki/Animales.html', {"listados" : listadoTabla})
+    return render(request ,'wiki/Animales.html',contexto )
 
-def Armas(request):
+def Armas(request,usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
 
     listadoTabla = Tabla.objects.filter(categoria = 1)
+    contexto = {"listados" : listadoTabla, "usuario" : usuario}
     
-    return render(request , 'wiki/Armas.html',{"listados" : listadoTabla})
+    return render(request , 'wiki/Armas.html',contexto)
 
 def Construcciones(request):
 
@@ -32,11 +35,13 @@ def Consumibles(request):
 
     return render(request ,'wiki/Consumibles.html')
 
-def Enemigos(request):
+def Enemigos(request,usuario):
 
+    usuario = Usuario.objects.get(id_usuario = usuario)
     listadoTabla = Tabla.objects.filter(categoria = 2)
+    contexto = {"listados" : listadoTabla, "usuario" : usuario}
     
-    return render(request , 'wiki/Enemigos.html',{"listados" : listadoTabla})
+    return render(request , 'wiki/Enemigos.html',contexto)
 
 def Flora(request):
     
@@ -45,14 +50,11 @@ def Flora(request):
     return render(request , 'wiki/Flora.html',{"listados" : listadoTabla})
 
 
-def forowiki(request,id_usuario):
+def forowiki(request,usuario):
 
     listadoForo = Comentario.objects.all()
-    usu = Usuario.objects.get(id_usuario=id_usuario)
-    contexto={
-        "usuario":usu,
-        "listados":listadoForo
-    }
+    usu = Usuario.objects.get(id_usuario=usuario)
+    contexto={"usuario":usu,"listados":listadoForo}
     return render(request ,'wiki/forowiki.html',contexto)
 
 def Historia(request):
@@ -101,26 +103,21 @@ def ModificarC(request, id_usuario):
 
     return render(request, 'wiki/ModificarCuenta.html', {"usuario":listadoTabla})
 
-def FormularioTablas(request):
+def FormularioTablas(request,usuario):
 
     categoria1 = Categoria.objects.all()
-    usuariost = Usuario.objects.all()
-
-    contexto = {
-        "categoria":categoria1,
-        "usuariop":usuariost
-    }
+    usuariost = Usuario.objects.get(id_usuario = usuario)
+    contexto = { "categoria":categoria1,"usuario":usuariost}
 
     return render(request, 'wiki/FormularioTablas.html',contexto)
 
-def EditarTablas(request, id_tema):
+def EditarTablas(request, id_tema,usuario):
     listadoTabla = Tabla.objects.get(id_tema = id_tema)
+    usuario = Usuario.objects.get(id_usuario = usuario)
     categoria1 = Categoria.objects.all()
 
-    contexto = {
-        "categoria":categoria1,
-        "listados":listadoTabla
-    }
+    contexto = {"categoria":categoria1,"listados":listadoTabla,"usuario":usuario}
+
     return render(request ,'wiki/EditarTablas.html', contexto)
 
 def registrar_usuario(request):
@@ -143,21 +140,18 @@ def ini_sesion(request):
     usuario1 = request.POST['usuariof']
     contra = request.POST['contrasena']
     try:
+
         usuario2 = Usuario.objects.get(id_usuario = usuario1 , clave = contra)
-        
-        contexto ={
-            "usuario":usuario2
-        }
-        if(usuario2.tipousuario.id_tipo == 2):
-            return render (request,'wiki/menuprincipal.html',contexto)
-        elif(usuario2.tipousuario.id_tipo == 1):
-            return render (request,'wiki/Admin.html',contexto)
+
+        if(usuario2.tipousuario.id_tipo == 1):
+            return redirect ('Admin')   
         else:
+            contexto = {"usuario":usuario2}
+            return render (request,'wiki/menuprincipal.html',contexto)
             
-            return redirect ('menuprincipal')
     except:
         messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
-        return redirect (request,'wiki/inicio-sesion.html',contexto)
+        return redirect (request,'wiki/inicio-sesion.html')
 
 
 def listado(request):
@@ -188,16 +182,17 @@ def borrarUsuario(request, id_usuario):
 
     return redirect('listado')
 
-def borrarContenido(request, id_tema):
+def borrarContenido(request, id_tema, usuario):
+    usuario1 = Usuario.objects.get(id_usuario = usuario)
     eliminar = Tabla.objects.get(id_tema = id_tema)
     eliminar.delete()
     messages.success(request, 'Contenido borrado')
 
-    return redirect('Armas')
+    contexto = {"usuario":usuario1}
+    return render(request, 'wiki/menuprincipal.html', contexto)
 
-def registroTabla(request,id_usuario):
-    usut = request.POST.get('usuarioa')
-
+def registroTabla(request,usuario):
+    usuario1 = Usuario.objects.get(id_usuario = usuario)
     categoriat = request.POST.get('categoria')
     cat2 = Categoria.objects.get(id_categoria=categoriat)
     fotot = request.FILES.get('foto')
@@ -208,10 +203,9 @@ def registroTabla(request,id_usuario):
 
     estadoDato = Estado.objects.get(id_estado = 1)
 
-    contexto={
-        "usuario":id_usuario
-    }
-    Tabla.objects.create(usuario = usut,categoria = cat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
+    contexto={"usuario":usuario1}
+
+    Tabla.objects.create(usuario = usuario1,categoria = cat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
     messages.success(request,'Dato registrado')
     return render(request,'wiki/menuprincipal.html',contexto)
 
@@ -249,25 +243,21 @@ def modificarC2(request,id_usuario):
     messages.success(request,'Usuario Modificado')
     return render(request,'wiki/Micuenta.html',contexto)
 
-def modificarTabla(request,id_usuario):
-    usut = request.POST['usuarioa']
+def modificarTabla(request,usuario):
+    usuario1= Usuario.objects.get(id_usuario = usuario)
+    usut = usuario1
     id_tema = request.POST['idt']
+    listadoTabla = Tabla.objects.get(id_tema = id_tema)
     categoriat = request.POST['categoria']
     categoriat2 = Categoria.objects.get(id_categoria = categoriat)
-    if(request.POST.get('foto')):
-        fotot = request.FILES['foto']
-        listadoTabla.foto = fotot
-
     nodato = request.POST['nombreDato']
     tipoDato = request.POST['tipodato']
     Descripcion = request.POST['descripcion']
     fech = datetime.datetime.now()
-
-    contexto ={
-            "usuario":id_usuario
-        }
-
-    listadoTabla = Tabla.objects.get(id_tema = id_tema)
+    if (request.FILES.get("foto")):
+        fotot = request.FILES['foto']
+        listadoTabla.foto = fotot
+    contexto ={"usuario":usuario1}
 
     listadoTabla.usuario = usut
     listadoTabla.categoria = categoriat2
@@ -286,17 +276,10 @@ def aniadirComentario(request,id):
     estadoDato = Estado.objects.get(id_estado = 1)
 
     contexto ={"usuario":usut}
-    
-    existe = None
-    try:
-        existe = Comentario.objects.get (texto =comentariou)
-        messages.error(request,'El Comentario ya existe')
-        return redirect('Foro')
-    
-    except:
-        Comentario.objects.create(titulo_com = dtema,f_creacion = datetime.datetime.now(), texto = comentariou, estado = estadoDato,usuario = usut)
-        messages.success(request,'Comentario añadido')
-        return render(request,'wiki/forowiki.html',contexto)
+
+    Comentario.objects.create(titulo_com = dtema,f_creacion = datetime.datetime.now(), texto = comentariou, estado = estadoDato,usuario = usut)
+    messages.success(request,'Comentario añadido')
+    return render(request,'wiki/forowiki.html',contexto)
 
     
 
