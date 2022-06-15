@@ -37,9 +37,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://www.google.com/maps/place/R%C3%ADo+Imperial+460,+Valle+Grande,+Lampa,+Regi%C3%B3n+Metropolitana/@-33.3295809,-70.751195,17z/data=!3m1!4b1!4m5!3m4!1s0x9662bf62531dc747:0xc0b4aee73c3b9373!8m2!3d-33.3295854!4d-70.7490063?hl=es-CL">Dirección</a>
               </li>
-              <li class="nav-item">
+              {% if usuario %}
+              
+                {% else %}
+                <li class="nav-item">
                   <a class="nav-link" href="{% url 'Registrarse' %}">Registrarse</a>
                 </li>
+              {% endif %}
 
                 {% if usuario %}
                 <li class="nav-item">
@@ -53,9 +57,7 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Admin' %}">Admin</a>
-                </li>
+                
                 
             </ul>
             <form class="d-flex" id="separarsearch" >
@@ -95,11 +97,18 @@
             <div class="carousel">
             
               <div class="pelicula">
-              
-                <a href="{% url 'Animales' %}"><img src="{% static 'wiki/img/menu-img/animal2.png' %}" alt=""></a>
+                {%if usuario %}
+                <a href="{% url 'Animales' usuario.id_usuario %}"><img src="{% static 'wiki/img/menu-img/animal2.png' %}" alt=""></a>
                 <center>
                   <p style="color: white;">Animales</p>
                 </center>
+                {%else%}
+                <a href="{% url 'Inicio-sesion' %}"><img src="{% static 'wiki/img/menu-img/animal2.png' %}" alt=""></a>
+                <center>
+                  <p style="color: white;">Animales</p>
+                </center>
+                {%endif%}
+                
               </div>
               <div class="pelicula">
                 <a href="{% url 'Lugares' %}"><img src="{% static 'wiki/img/menu-img/mapaforest1.png' %}" alt=""></a>
@@ -108,10 +117,17 @@
                 </center>
               </div>
               <div class="pelicula">
-                <a href="{% url 'Enemigos' %}"><img src="{% static 'wiki/img/menu-img/enemigosforest1.png' %}" alt=""></a>
+                {% if usuario %}
+                <a href="{% url 'Enemigos' usuario.id_usuario %}"><img src="{% static 'wiki/img/menu-img/enemigosforest1.png' %}" alt=""></a>
                 <center>
                   <p style="color: white;">Enemigos</p>
                 </center>
+                {% else %}
+                <a href="{% url 'Inicio-sesion'%}"><img src="{% static 'wiki/img/menu-img/enemigosforest1.png' %}" alt=""></a>
+                <center>
+                  <p style="color: white;">Enemigos</p>
+                </center>
+                {% endif %}
               </div>
               <div class="pelicula">
                 <a href="{% url 'Construcciones' %}"><img src="{% static 'wiki/img/menu-img/buildings.png' %}" alt=""></a>
@@ -120,16 +136,30 @@
                 </center>
               </div>
               <div class="pelicula">
-                <a href="{% url 'Flora' %}"><img src="{% static 'wiki/img/menu-img/plantaforest.png' %}" alt=""></a>
+                {% if usuario %}
+                <a href="{% url 'Flora' usuario.id_usuario %}"><img src="{% static 'wiki/img/menu-img/plantaforest.png' %}" alt=""></a>
                 <center>
                   <p style="color: white;">Plantas</p>
                 </center>
+                {% else %}
+                <a href="{% url 'Inicio-sesion' %}"><img src="{% static 'wiki/img/menu-img/plantaforest.png' %}" alt=""></a>
+                <center>
+                  <p style="color: white;">Plantas</p>
+                </center>
+                {% endif %}
               </div>
               <div class="pelicula">
-                <a href="{% url 'Armas' %}"><img src="{% static 'wiki/img/menu-img/armasthf1.png' %}" alt=""></a>
+                {% if usuario %}
+                <a href="{% url 'Armas' usuario.id_usuario %}"><img src="{% static 'wiki/img/menu-img/armasthf1.png' %}" alt=""></a>
                 <center>
                   <p style="color: white;">Armas</p>
                 </center>
+                {% else %}
+                <a href="{% url 'Inicio-sesion' %}"><img src="{% static 'wiki/img/menu-img/armasthf1.png' %}" alt=""></a>
+                <center>
+                  <p style="color: white;">Armas</p>
+                </center>
+                {% endif %}
               </div>
               <div class="pelicula">
                 <a href="{% url 'Consumibles' %}"><img src="{% static 'wiki/img/menu-img/consumibles.png' %}" alt=""></a>

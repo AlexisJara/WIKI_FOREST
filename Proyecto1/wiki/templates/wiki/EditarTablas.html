@@ -30,9 +30,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://www.google.com/maps/place/R%C3%ADo+Imperial+460,+Valle+Grande,+Lampa,+Regi%C3%B3n+Metropolitana/@-33.3295809,-70.751195,17z/data=!3m1!4b1!4m5!3m4!1s0x9662bf62531dc747:0xc0b4aee73c3b9373!8m2!3d-33.3295854!4d-70.7490063?hl=es-CL">Dirección</a>
               </li>
-              <li class="nav-item">
+              {% if usuario %}
+              
+                {% else %}
+                <li class="nav-item">
                   <a class="nav-link" href="{% url 'Registrarse' %}">Registrarse</a>
                 </li>
+              {% endif %}
 
                 {% if usuario %}
                 <li class="nav-item">
@@ -47,9 +51,7 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Admin' %}">Admin</a>
-                  </li>
+                
           </ul>
           <form class="d-flex" id="separar-derecha">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
@@ -79,9 +81,9 @@
             {% endif %}
                     <div>
                         <label for="" class="label-color">Categoria(En que tabla lo quieres insertar?)</label>
-                        <select name="" id="categoria" class="form-select margin-abajo">
+                        <select name="categoria" id="categoria" class="form-select margin-abajo">
                             {% for c in categoria %}
-                                {% if c.id_categoria == listados.id_categoria.categoria %}
+                                {% if c.id_categoria == listados.categoria.id_categoria %}
                                     <option value="{{ listados.categoria.id_categoria }}" selected>{{ listados.categoria.nombre }}</option> 
                                 {% else %}
                                     <option value="{{ c.id_categoria }}">{{ c.nombre }}</option>
@@ -90,8 +92,11 @@
                         </select>
                     </div>
                     <div>
-                        <label for="" class="label-color">Imagen</label>
-                        <input type="file" id="foto" name="foto" class="form-control margin-abajo" value="{{listados.foto}}">
+                        <label for="" class="label-color">Selecciona una Imagen</label>
+                        {% if tabla.foto %}
+                        <img src="{{tabla.foto.url}}" alt="no hay foto" class="prod-size">
+                        {% endif %}
+                        <input type="file" id="foto" name="foto" class="form-control margin-abajo">
                     </div>
                     <div>
                         <label for="" class="label-color">Nombre de Enemigo/Flora/Arma/Logro/Animal</label>
@@ -104,7 +109,7 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Descripcion</label>
-                        <textarea name="descripcion" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control" value = "{{listados.descripcion}}"></textarea>
+                        <textarea name="descripcion" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control" >{{listados.descripcion}}</textarea>
                     </div>
                     <div class="row">
                         <div class="col">
