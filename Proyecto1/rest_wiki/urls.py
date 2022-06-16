@@ -1,10 +1,16 @@
 from django.urls import path
-from rest_wiki.views import lista_tablas,agregarC,controlC
+from rest_wiki.views import lista_tablas,agregarC,controlC,lista_usuario,agregarUsuario,controlUsuario
 from rest_wiki.viewsLogin import login
 
 urlpatterns = [
+    #lista tabla wiki
     path('lista_tablas/',lista_tablas,name="lista_tablas"),
     path('agregarC/',agregarC,name="agregarC"),
-    path('controlC/<codigo>',controlC,name="controlC"),
+    path('controlC/<id>',controlC,name="controlC"),
     path('login/',login,name="login"),
+
+    #usuarios
+    path('lista_usuario/',lista_usuario,name="lista_usuario"),
+    path('agregarUsuario/',agregarUsuario,name="agregarUsuario"),
+    path('controlUsuario/<id>',controlUsuario,name="controlUsuario"),
 ]
