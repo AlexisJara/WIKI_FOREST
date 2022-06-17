@@ -279,7 +279,7 @@ def aniadirComentario(request,id):
 
     Comentario.objects.create(titulo_com = dtema,f_creacion = datetime.datetime.now(), texto = comentariou, estado = estadoDato,usuario = usut)
     messages.success(request,'Comentario añadido')
-    return render(request,'wiki/forowiki.html',contexto)
+    return render(request,'wiki/menuprincipal.html',contexto)
 
     
 
