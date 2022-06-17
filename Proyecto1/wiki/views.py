@@ -209,12 +209,15 @@ def registroTabla(request,usuario):
     messages.success(request,'Dato registrado')
     return render(request,'wiki/menuprincipal.html',contexto)
 
-def borrarComentario(request, id_comentario):
+def borrarComentario(request, id_comentario,usuario):
+    usuario1 = Usuario.objects.get(id_usuario = usuario)
     eliminar = Comentario.objects.get(id_comentario = id_comentario)
     eliminar.delete()
+    contexto={"usuario":usuario1}
+
     messages.success(request, 'Comentario borrado')
 
-    return redirect('forowiki')
+    return render(request,'wiki/forowiki.html',contexto)
 
 
 def modificarC2(request,id_usuario):
@@ -270,14 +273,15 @@ def modificarTabla(request,usuario):
     return render(request,'wiki/menuprincipal.html',contexto)
 
 def aniadirComentario(request,id):
-    dtema = request.POST.get('tema')
-    comentariou = request.POST.get('Comentario')
+    dtema = request.POST['tema']
+    comentariou = request.POST['Comentario']
     usut = Usuario.objects.get(id_usuario = id)
     estadoDato = Estado.objects.get(id_estado = 1)
+    fechaa = datetime.datetime.now()
 
     contexto ={"usuario":usut}
 
-    Comentario.objects.create(titulo_com = dtema,f_creacion = datetime.datetime.now(), texto = comentariou, estado = estadoDato,usuario = usut)
+    Comentario.objects.create(titulo_com = dtema,f_creacion = fechaa, texto = comentariou, estado = estadoDato,usuario = usut)
     messages.success(request,'Comentario añadido')
     return render(request,'wiki/menuprincipal.html',contexto)
 

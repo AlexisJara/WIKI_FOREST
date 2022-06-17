@@ -54,7 +54,7 @@ urlpatterns = [
 
     path('eliminarContenido/<int:id_tema>/<str:usuario>', borrarContenido, name="borrarContenido"),
 
-    path('eliminarComentario/<int:id_comentario>', borrarComentario, name="borrarComentario"),
+    path('eliminarComentario/<int:id_comentario>/<str:usuario>', borrarComentario, name="borrarComentario"),
 
     path('eliminarUsuario/<id_usuario>', borrarUsuario, name="eliminarUsuario"),
 

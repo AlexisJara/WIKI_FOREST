@@ -69,7 +69,7 @@
     <div class="row comentarios justify-content-center">
         <div class="col-6">
           {% if usuario %}
-            <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" class="form_comentarios d-flex justify-content-end flex-wrap">
+            <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
               
                 {% csrf_token %}
                 <div>
@@ -86,7 +86,7 @@
             </form>
             {% for l in listados %}
             <div class="media">
-                <img src="{% static 'wiki/img/Foro/user.png' %}" alt="">
+                <img src="{{l.usuario.foto.url}}" alt="">
                 <div class="media-body">
                     <p class="nombre">{{l.usuario}} <span>{{l.f_creacion}}</span></p>
                     <p class="comentario color-comentarios">
@@ -97,7 +97,7 @@
                     <div class="botones text-right">
 
                     </div>
-
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
                 </div>
 
             </div>

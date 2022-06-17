@@ -67,9 +67,9 @@ class Tabla(models.Model):
 
 class Comentario(models.Model):
     id_comentario = models.AutoField(primary_key=True, verbose_name='Id del comentario')
-    titulo_com = models.CharField(max_length=50, verbose_name='Titulo del comentario', blank=False)
-    f_creacion = models.DateTimeField(verbose_name='fecha de la creacion', blank=False)
-    texto = models.CharField(max_length=250, verbose_name='descripcion del comentario', blank=False)
+    titulo_com = models.CharField(max_length=50, verbose_name='Titulo del comentario',null=False, blank=True)
+    f_creacion = models.DateTimeField(verbose_name='fecha de la creacion', blank=True)
+    texto = models.CharField(max_length=250, verbose_name='descripcion del comentario',null=False, blank=True)
     estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
