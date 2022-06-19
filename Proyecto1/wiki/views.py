@@ -146,7 +146,7 @@ def ini_sesion(request):
 
         if(usuario2.tipousuario.id_tipo == 1):
             contexto = {"usuario":usuario2}
-            return render (request,'wiki/Admin.html',contexto)
+            return redirect('Admin')
         else:
             if(usuario2.estado.id_estado == 2):
                 messages.error(request, 'El usuario que ingresaste se encuentra baneado')
