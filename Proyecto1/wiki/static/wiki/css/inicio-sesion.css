@@ -13,6 +13,10 @@ Logo Dell: https://worldvectorlogo.com/logo/dell-1
 	--fondo: #1414148c;
 }
 
+.margin-bott{
+    margin-top: 5px;
+}
+
 body {
     font-family: 'Spartan', sans-serif;
     font-weight: 300;

@@ -145,14 +145,19 @@ def ini_sesion(request):
         usuario2 = Usuario.objects.get(id_usuario = usuario1 , clave = contra)
 
         if(usuario2.tipousuario.id_tipo == 1):
-            return redirect ('Admin')   
-        else:
             contexto = {"usuario":usuario2}
-            return render (request,'wiki/menuprincipal.html',contexto)
+            return render (request,'wiki/Admin.html',contexto)
+        else:
+            if(usuario2.estado.id_estado == 2):
+                messages.error(request, 'El usuario que ingresaste se encuentra baneado')
+                return redirect ('Inicio-sesion')
+            else:
+                contexto = {"usuario":usuario2}
+                return render (request,'wiki/menuprincipal.html',contexto)
             
     except:
         messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
-        return redirect (request,'wiki/inicio-sesion.html')
+        return redirect ('Inicio-sesion')
 
 
 def listado(request):
@@ -165,14 +170,14 @@ def listadoForo(request):
 
 def penalizarUsuario(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
-    if usuario.estado == 1:
-        usuario.estado = 2
-        Usuario.save()
-        messages.success(request, 'Usuario baneado')
-    elif usuario.estado == 2:
-        usuario.estado = 1
-        Usuario.save()
-        messages.success(request, 'Usuario desbaneado')
+    if usuario.estado.id_estado == 1:
+        usuario.estado = Estado.objects.get(id_estado = 2)
+        usuario.save()
+        messages.success(request, 'Usuario baneado con exito')
+    elif usuario.estado.id_estado == 2:
+        usuario.estado = Estado.objects.get(id_estado = 1)
+        usuario.save()
+        messages.success(request, 'Usuario desbaneado con exito')
 
     return redirect('listado')
 

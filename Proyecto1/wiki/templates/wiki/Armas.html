@@ -76,11 +76,16 @@
                 <div class="center-titulo">
                     <h1 id=titulo>Armas</h1>
                 </div>
+
                 <div class="w-33">
                     <div class="center">
-                      <a href="{% url 'FormularioTablas'  usuario.id_usuario %}" class="btn btn-dark">Añadir</a>
+                      {% if usuario.tipousuario.id_tipo == 2 %}
+                        <a href="{% url 'FormularioTablas'  usuario.id_usuario %}" class="btn btn-dark">Añadir</a>
+                      {% else %}
+                      {% endif %}
                     </div>
-                  </div>
+                </div>
+                
                 
                 <div class="center">
                     <p id="caja_bienvenida">Dentro del juego existen muchas armas tanto a distancia como cuerpo a cuerpo, algunas de ellas siendo <br> herramientas que puedes ocupar para matar, construir, escalar, obtener comida, etc.
@@ -128,8 +133,16 @@
                             </div>
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
+                                    {% if usuario.tipousuario.id_tipo == 2 %}
                                     <div class="col-md-6"><a href="{% url 'EditarTablas'  l.id_tema  usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
+                                    {% else %}
+                                    {% endif %}
+                                    {% if usuario.id_usuario == l.usuario.id_usuario %}
                                     <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    {% elif usuario.tipousuario.id_tipo == 1 %}
+                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    {% else %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>    

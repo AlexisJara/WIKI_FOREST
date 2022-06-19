@@ -12,12 +12,23 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+
+
+.colorM{
+    color: rgb(255, 0, 0);
+}
+
 #colorcuerpo{
     color: var(--dark);
 }
 
 .colora{
     color: wheat;
+}
+
+.centrarmensajes{
+    text-align: center;
 }
 
 #fondo1{
@@ -47,6 +58,8 @@
 .margin-izquierda{
     margin-left: 10px;
 }
+
+
 /*footer*/
 footer {
     background-color: rgba(36, 36, 36, 0.664);

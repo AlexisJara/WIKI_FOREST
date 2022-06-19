@@ -115,7 +115,15 @@
                       <a href="{% url 'Recuperarcontra' %}" id="emailHelp" class="form-text text-muted text-decoration-none">  ¿Has olvidado tu contraseña?</a>                     
                     </div>
                     <div class="center"><button type="submit" class="btn btn-primary w-100">iniciar sesion</button></div>
-                    
+                    <div class="margin-bott">
+                      {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li class="text-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </div>
 
                   </form>
 

@@ -74,7 +74,16 @@
       
       <div class="container">
           <h1 class="color-titulo margin-abajo-titulo">Administrador</h1>
+          <div class="centrarmensajes">
+          </div>
           <div class="row text-center">
+            {% if messages %}
+                  <ul class="messages">
+                      {% for message in messages %}
+                      <li class="text-danger">{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+            {% endif %}
             <div class="col-md-2"></div>
             <div class="col-md-8">
               <div class="table-responsive">
@@ -89,18 +98,21 @@
                   </thead>
                   <tbody>
                     {% for l in listados %}
+                      {% if l.tipousuario.id_tipo == 2 %}
                       <tr>
                         <td>{{l.id_usuario}}</td>
                         <td>{{l.correo}}</td>
                         <td>{{l.estado}}</td>
                         <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
-                        {% if l.estado == 1 %}
+                        {% if l.estado.id_estado == 1 %}
                           <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Banear</a></td>
-                        {% elif l.estado == 2 %}
+                        {% elif l.estado.id_estado == 2 %}
                           <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Desbanear</a></td>
                         {% endif %}
                         <td><a href="{% url 'eliminarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
                       </tr>
+                      {% else %}
+                      {% endif %}
                     {% endfor %}
                   </tbody>
                 </table>
