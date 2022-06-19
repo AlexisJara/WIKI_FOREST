@@ -74,7 +74,7 @@
             <div class="letra">
                 <div class="w-33">
                     <div class="center">
-                      <a href="{% url 'FormularioTablas' %}" class="btn btn-dark">Añadir</a>
+                      <a href="{% url 'FormularioTablas' usuario.id_usuario %}" class="btn btn-dark">Añadir</a>
                     </div>
                 </div>
                 <div class="container">
@@ -125,8 +125,8 @@
                             </div>
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
-                                  <div class="col-md-6"><a href="{% url 'EditarTablas' l.id_tema %}" class="btn btn-info">Editar</a></div>
-                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema %}" class="btn btn-danger">Eliminar</a></div>
+                                  <div class="col-md-6"><a href="{% url 'EditarTablas' l.id_tema usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
+                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
                                 </div>
                             </div>
                         </div>    

@@ -41,13 +41,14 @@ def Enemigos(request,usuario):
     listadoTabla = Tabla.objects.filter(categoria = 2)
     contexto = {"listados" : listadoTabla, "usuario" : usuario}
     
-    return render(request , 'wiki/Enemigos.html',contexto)
+    return render(request,'wiki/Enemigos.html',contexto)
 
-def Flora(request):
-    
+def Flora(request,usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
     listadoTabla = Tabla.objects.filter(categoria = 4)
+    contexto = {"listados":listadoTabla,"usuario" : usuario}
 
-    return render(request , 'wiki/Flora.html',{"listados" : listadoTabla})
+    return render(request , 'wiki/Flora.html',contexto)
 
 
 def forowiki(request,usuario):
@@ -220,7 +221,7 @@ def borrarComentario(request, id_comentario,usuario):
     return render(request,'wiki/forowiki.html',contexto)
 
 
-def modificarC2(request,id_usuario):
+def modificarC2(request,usuario):
     nombre_u = request.POST['nombre']
     apellido_u = request.POST['apellido']
     nomusuario_u = request.POST['nomusuario']
@@ -228,17 +229,16 @@ def modificarC2(request,id_usuario):
     correo_u = request.POST['correo']
     clave_u = request.POST['Clave1']
 
-    contexto ={
-            "usuario":id_usuario
-        }
-
+    
     usuario = Usuario.objects.get(id_usuario = nomusuario_u)
     usuario.nombre = nombre_u
     usuario.apellido = apellido_u
     usuario.foto = avatar_u
     usuario.correo = correo_u
     usuario.clave = clave_u
-
+    contexto ={
+            "usuario":usuario
+        }
 
    
 

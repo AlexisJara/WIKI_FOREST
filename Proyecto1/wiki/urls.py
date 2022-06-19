@@ -64,7 +64,7 @@ urlpatterns = [
 
     path('ModificarCuenta/<id_usuario>', ModificarC, name="ModificarCuenta"),
 
-    path('ModificarCuenta2/<id_usuario>', modificarC2, name="ModificarCuenta2"),
+    path('ModificarCuenta2/<usuario>', modificarC2, name="ModificarCuenta2"),
 
     path('FormularioTablas/<usuario>', FormularioTablas, name='FormularioTablas'),
 
