@@ -76,12 +76,13 @@
             <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
               
                 {% csrf_token %}
+
+
                 <div>
-                  <label for="" class="label-color">Nombre de autor</label>
-
                   <input type="text" id="usuarioa" name="usuarioa" class="form-control margin-abajo" value="{{usuario.id_usuario}}" readonly>
-
                 </div>
+
+
                 <input type="text" placeholder="tema" id="tema" name="tema" class="form-control margin-tema" required>
                 <textarea name="Comentario" id="Comentario" placeholder="Comentario" class="form-control" required></textarea>
                 <button class="btn margin-bot" type="reset" >Borrar</button>
@@ -104,9 +105,9 @@
 
                     </div>
                     {% if usuario.id_usuario == l.usuario.id_usuario %}
-                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="">Eliminar</a></div>
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="btn btn-danger margin-button">Eliminar</a></div>
                     {% elif usuario.tipousuario.id_tipo == 1 %}
-                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="">Eliminar</a></div>
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-danger">Eliminar</a></div>
                     {% else %}
                     {% endif %}
                 </div>

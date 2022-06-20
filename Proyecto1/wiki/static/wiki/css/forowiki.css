@@ -16,6 +16,10 @@ h5{
     font-size: 35px;
 }
 
+.margin-button{
+    margin-bottom: 5px;
+}
+
 
 #fuente{
 	color: var(--rojo);

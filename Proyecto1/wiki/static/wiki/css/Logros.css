@@ -65,6 +65,11 @@
 	padding-top: 10px;
 }
 
+.center-titulo{
+	text-align: center;
+   	align-items: center;
+}
+
 .center-texto{
 	text-align: center;
 }

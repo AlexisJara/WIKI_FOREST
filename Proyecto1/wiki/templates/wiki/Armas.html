@@ -111,7 +111,7 @@
                     
                     <h5 class="center margin-tabla">Orden de datos:</h5>
                     
-                    <p class="center">1er bloque = Usuario<br>2do bloque = Arma<br>3er bloque = Descripcion</p>
+                    <p class="center">1er bloque = Usuario<br>2do bloque = Arma<br>3er bloque = Descripcion<br>4er bloque = Opciones</p>
                     
                     
                 </div>
@@ -146,13 +146,13 @@
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
                                     {% if usuario.tipousuario.id_tipo == 2 %}
-                                    <div class="col-md-6"><a href="{% url 'EditarTablas'  l.id_tema  usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
+                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'EditarTablas'  l.id_tema  usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
                                     {% else %}
                                     {% endif %}
                                     {% if usuario.id_usuario == l.usuario.id_usuario %}
-                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
                                     {% elif usuario.tipousuario.id_tipo == 1 %}
-                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
                                     {% else %}
                                     {% endif %}
                                 </div>

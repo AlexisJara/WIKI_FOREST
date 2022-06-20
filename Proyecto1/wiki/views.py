@@ -174,11 +174,11 @@ def penalizarUsuario(request, id_usuario):
     if usuario.estado.id_estado == 1:
         usuario.estado = Estado.objects.get(id_estado = 2)
         usuario.save()
-        messages.success(request, 'Usuario baneado con exito')
+        messages.success(request, '---Usuario baneado exitosamente---')
     elif usuario.estado.id_estado == 2:
         usuario.estado = Estado.objects.get(id_estado = 1)
         usuario.save()
-        messages.success(request, 'Usuario desbaneado con exito')
+        messages.success(request, '---Usuario desbaneado exitosamente---')
 
     return redirect('listado')
 
