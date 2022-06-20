@@ -56,11 +56,7 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
-                {% if usuario.tipousuario.id_tipo == 1 %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'Admin' usuario.id_usuario%}">Administrador</a>
-                </li>
-                {% endif %}
+                
           </ul>
           <form class="d-flex" id="separarsearch" >
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
@@ -76,6 +72,7 @@
     <div class="row comentarios justify-content-center">
         <div class="col-6">
           {% if usuario %}
+            {% if usuario.tipousuario.id_tipo == 2 %}
             <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
               
                 {% csrf_token %}
@@ -91,6 +88,8 @@
                 <button class="btn " type="submit">Comentar</button>
           
             </form>
+            {% else %}
+            {% endif %}
             {% for l in listados %}
             <div class="media">
                 <img src="{{l.usuario.foto.url}}" alt="">
@@ -104,7 +103,12 @@
                     <div class="botones text-right">
 
                     </div>
-                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                    {% if usuario.id_usuario == l.usuario.id_usuario %}
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="">Eliminar</a></div>
+                    {% elif usuario.tipousuario.id_tipo == 1 %}
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="">Eliminar</a></div>
+                    {% else %}
+                    {% endif %}
                 </div>
 
             </div>

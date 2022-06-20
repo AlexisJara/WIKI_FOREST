@@ -185,7 +185,7 @@ def penalizarUsuario(request, id_usuario):
 def borrarUsuario(request, id_usuario):
     eliminar = Usuario.objects.get(id_usuario = id_usuario)
     eliminar.delete()
-    messages.success(request, 'Usuario borrado')
+    messages.success(request, '---Usuario borrado exitosamente---')
 
     return redirect('listado')
 
@@ -195,7 +195,7 @@ def borrarContenido(request, id_tema, usuario):
     eliminar.delete()
 
     contexto = {"usuario":usuario1}
-    messages.success(request,'Contenido borrado con exito')
+    messages.success(request,'---Contenido borrado exitosamente---')
     return render(request, 'wiki/menuprincipal.html', contexto)
 
 def registroTabla(request,usuario):
@@ -213,7 +213,7 @@ def registroTabla(request,usuario):
     contexto={"usuario":usuario1}
 
     Tabla.objects.create(usuario = usuario1,categoria = cat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
-    messages.success(request,'Dato registrado exitosamente')
+    messages.success(request,'---Dato registrado exitosamente---')
     return render(request,'wiki/menuprincipal.html',contexto)
 
 def borrarComentario(request, id_comentario,usuario):
@@ -222,9 +222,9 @@ def borrarComentario(request, id_comentario,usuario):
     eliminar.delete()
     contexto={"usuario":usuario1}
 
-    messages.success(request, 'Comentario borrado')
+    messages.success(request, '---Comentario borrado exitosamente---')
 
-    return render(request,'wiki/forowiki.html',contexto)
+    return render(request,'wiki/menuprincipal.html',contexto)
 
 
 def modificarC2(request,usuario):
@@ -249,7 +249,7 @@ def modificarC2(request,usuario):
    
 
     usuario.save()
-    messages.success(request,'Usuario Modificado')
+    messages.success(request,'Usuario Modificado exitosamente')
     return render(request,'wiki/Micuenta.html',contexto)
 
 def modificarTabla(request,usuario):
@@ -276,7 +276,7 @@ def modificarTabla(request,usuario):
     listadoTabla.f_creacion = fech
     listadoTabla.save()
 
-    messages.success(request,'Contenido modificado con exito')
+    messages.success(request,'---Contenido modificado exitosamente---')
     return render(request,'wiki/menuprincipal.html',contexto)
 
 def aniadirComentario(request,id):
@@ -289,7 +289,7 @@ def aniadirComentario(request,id):
     contexto ={"usuario":usut}
 
     Comentario.objects.create(titulo_com = dtema,f_creacion = fechaa, texto = comentariou, estado = estadoDato,usuario = usut)
-    messages.success(request,'Comentario añadido')
+    messages.success(request,'---Comentario añadido exitosamente---')
     return render(request,'wiki/menuprincipal.html',contexto)
 
     
