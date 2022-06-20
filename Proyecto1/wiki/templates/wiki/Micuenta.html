@@ -122,6 +122,15 @@
 
               </div>
           </ul>
+          <div class="center">
+            {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                  <li class="text-danger">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+          </div>
         
       </div>
       {% endif %}

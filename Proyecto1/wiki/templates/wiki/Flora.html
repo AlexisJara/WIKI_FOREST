@@ -79,7 +79,10 @@
             <div class="letra">
                 <div class="w-33">
                     <div class="center">
+                      {% if usuario.tipousuario.id_tipo == 2 %}
                       <a href="{% url 'FormularioTablas' usuario.id_usuario %}" class="btn btn-dark">Añadir</a>
+                      {% else %}
+                      {% endif %}
                     </div>
                 </div>
                 <div class="container">
@@ -87,6 +90,13 @@
                         <p id="caja_bienvenida">Flora se refiere a las diversas plantas y hongos que se pueden encontrar en El Bosque. Algunas especies se pueden encontrar en la Guía de Naturaleza en las secciones de Flora. Las plantas se dividen en dos grupos: la vegetación genérica, que está formada por la flora general que se encuentra en la Península, y las plantas de consumo, que son las comestibles, medicinales,
                           y organismos venenosos que crecen en el medio ambiente.
                         </p>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li class="text-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                     
                 </div>
@@ -130,8 +140,16 @@
                             </div>
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
-                                  <div class="col-md-6"><a href="{% url 'EditarTablas' l.id_tema usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
-                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                  {% if usuario.tipousuario.id_tipo == 2 %}
+                                  <div class="col-md-6"><a href="{% url 'EditarTablas'  l.id_tema  usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
+                                  {% else %}
+                                  {% endif %}
+                                  {% if usuario.id_usuario == l.usuario.id_usuario %}
+                                  <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                  {% elif usuario.tipousuario.id_tipo == 1 %}
+                                  <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                  {% else %}
+                                  {% endif %}
                                 </div>
                             </div>
                         </div>    
