@@ -92,6 +92,10 @@ header nav a.activo {
 	margin-bottom: 6.25em;
 }
 
+.margin-bot{
+	text-align: right;
+}
+
 .wiki .titulo {
 	font-weight: 600;
 	font-size: 3.12em;
