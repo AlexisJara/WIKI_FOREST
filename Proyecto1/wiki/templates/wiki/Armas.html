@@ -138,7 +138,7 @@
                                 <p class="center-titulo">{{ l.usuario }}<span><br>{{ l.f_creacion }}</p>
                             </div>
                             <div class="col-sm-2 border border-secondary fondo-tabla center">
-                                <p class="center-titulo"><img src="{{ l.foto.url }}" alt="" class="imagen img-fluid"><br>{{ l.nom_dato }}</p>
+                                <p class="center-titulo"><img src="{{ l.foto.url }}" alt="" class="imagen img-fluid margin-image"><br>{{ l.nom_dato }}</p>
                             </div>
                             <div class="col-sm-5 border border-secondary fondo-tabla center">
                                 <p class="center-titulo">{{ l.descripcion }}</p>
@@ -146,13 +146,13 @@
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
                                     {% if usuario.tipousuario.id_tipo == 2 %}
-                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'EditarTablas'  l.id_tema  usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
+                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'EditarTablas'  l.id_tema  usuario.id_usuario %}" class="btn btn-info margin-button">Editar</a></div>
                                     {% else %}
                                     {% endif %}
                                     {% if usuario.id_usuario == l.usuario.id_usuario %}
-                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger margin-button">Eliminar</a></div>
                                     {% elif usuario.tipousuario.id_tipo == 1 %}
-                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    <div class="col-6 col-md-6 col-sm-6"><a href="{% url 'borrarContenido' l.id_tema  usuario.id_usuario %}" class="btn btn-danger margin-button">Eliminar</a></div>
                                     {% else %}
                                     {% endif %}
                                 </div>

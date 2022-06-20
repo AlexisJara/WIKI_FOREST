@@ -37,7 +37,10 @@
     padding-bottom: 2%;
  }
  
- 
+.margin-button{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
  .color2{
     color: #ffc400 ;
     font-family: cursive;

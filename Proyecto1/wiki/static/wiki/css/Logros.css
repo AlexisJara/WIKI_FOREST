@@ -74,7 +74,14 @@
 	text-align: center;
 }
 
+.margin-button{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 
+.margin-image{
+	padding-top: 15px;
+}
 
 .imagen{
 	align-items: center;
