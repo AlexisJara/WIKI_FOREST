@@ -57,6 +57,11 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
+                {% if usuario.tipousuario.id_tipo == 1 %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Admin' usuario.id_usuario%}">Administrador</a>
+                </li>
+                {% endif %}
                 
                 
             </ul>
@@ -88,7 +93,13 @@
           <h3 id="fuente">Contenido The Forest</h3>
           <div class="indicadores"></div>
         </div>
-
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+              <li class="text-danger">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
         <div class="contenedor-principal">
           <button role="button" id="flecha-izquierda" class="flecha-izquierda"><i
               class="fas fa-angle-left"></i></button>
@@ -111,10 +122,18 @@
                 
               </div>
               <div class="pelicula">
-                <a href="{% url 'Lugares' %}"><img src="{% static 'wiki/img/menu-img/mapaforest1.png' %}" alt=""></a>
+                {%if usuario %}
+                <a href="{% url 'Logros' usuario.id_usuario %}"><img src="{% static 'wiki/img/menu-img/Storytf.png' %}" alt=""></a>
                 <center>
-                  <p style="color: white;">Mapa</p>
+                  <p style="color: white;">Logros</p>
                 </center>
+                {%else%}
+                <a href="{% url 'Inicio-sesion' %}"><img src="{% static 'wiki/img/menu-img/Storytf.png' %}" alt=""></a>
+                <center>
+                  <p style="color: white;">Logros</p>
+                </center>
+                {%endif%}
+                
               </div>
               <div class="pelicula">
                 {% if usuario %}
@@ -128,12 +147,6 @@
                   <p style="color: white;">Enemigos</p>
                 </center>
                 {% endif %}
-              </div>
-              <div class="pelicula">
-                <a href="{% url 'Construcciones' %}"><img src="{% static 'wiki/img/menu-img/buildings.png' %}" alt=""></a>
-                <center>
-                  <p style="color: white;">Construcciones</p>
-                </center>
               </div>
               <div class="pelicula">
                 {% if usuario %}
@@ -160,18 +173,6 @@
                   <p style="color: white;">Armas</p>
                 </center>
                 {% endif %}
-              </div>
-              <div class="pelicula">
-                <a href="{% url 'Consumibles' %}"><img src="{% static 'wiki/img/menu-img/consumibles.png' %}" alt=""></a>
-                <center>
-                  <p style="color: white;">Consumibles</p>
-                </center>
-              </div>
-              <div class="pelicula">
-                <a href="{% url 'Historia' %}"><img src="{% static 'wiki/img/menu-img/storytf.png' %}" alt=""></a>
-                <center>
-                  <p style="color: white;">Historia</p>
-                </center>
               </div>
 
             

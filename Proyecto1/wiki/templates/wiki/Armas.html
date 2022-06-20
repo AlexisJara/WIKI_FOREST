@@ -60,6 +60,11 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
+                {% if usuario.tipousuario.id_tipo == 1 %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Admin' usuario.id_usuario%}">Administrador</a>
+                </li>
+                {% endif %}
               
           </ul>
           <form class="d-flex" id="separar-derecha">
@@ -90,6 +95,13 @@
                 <div class="center">
                     <p id="caja_bienvenida">Dentro del juego existen muchas armas tanto a distancia como cuerpo a cuerpo, algunas de ellas siendo <br> herramientas que puedes ocupar para matar, construir, escalar, obtener comida, etc.
                     </p>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li class="text-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
                 
             </div>

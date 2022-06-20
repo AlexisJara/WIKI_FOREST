@@ -38,7 +38,7 @@ urlpatterns = [
 
     path('Inicio-sesion/', inicio_sesion, name='Inicio-sesion'),
 
-    path('Logros/<str:usuario>', Logros, name='Logros'),
+    path('Logros/<str:id_usuario>', Logros, name='Logros'),
 
     path('Lugares/', Lugares, name='Lugares'),
 

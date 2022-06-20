@@ -53,6 +53,11 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
+                {% if usuario.tipousuario.id_tipo == 1 %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Admin' usuario.id_usuario%}">Administrador</a>
+                </li>
+                {% endif %}
                 
           </ul>
           <form class="d-flex" id="separar-derecha">
@@ -72,12 +77,22 @@
                 <div class="container">
                     <div class="w-33">
                         <div class="center">
+                          {% if usuario.tipousuario.id_tipo == 2 %}
                           <a href="{% url 'FormularioTablas' usuario.id_usuario %}" class="btn btn-dark">Añadir</a>
+                          {% else %}
+                          {% endif %}
                         </div>
                     </div>
                 <div class="center">
                     <p id="caja_bienvenida">La península de The Forest está poblada de muchos tipos diferentes de animales . Estos animales se convierten en una parte esencial de la supervivencia del jugador ya que algunos de ellos pueden ser explotados para obtener comida , piel u otros materiales de artesanía .
                     </p>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li class="text-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
                 
             </div>
@@ -121,8 +136,16 @@
                             </div>
                             <div class="col-sm-3 border border-secondary fondo-tabla center">
                                 <div class="row">
+                                    {% if usuario.tipousuario.id_tipo == 2 %}
                                     <div class="col-md-6"><a href="{% url 'EditarTablas' l.id_tema usuario.id_usuario %}" class="btn btn-info">Editar</a></div>
+                                    {% else %}
+                                    {% endif %}
+                                    {% if usuario.id_usuario == l.usuario.id_usuario %}
                                     <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    {% elif usuario.tipousuario.id_tipo == 1 %}
+                                    <div class="col-md-6"><a href="{% url 'borrarContenido' l.id_tema usuario.id_usuario %}" class="btn btn-danger">Eliminar</a></div>
+                                    {% else %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>    

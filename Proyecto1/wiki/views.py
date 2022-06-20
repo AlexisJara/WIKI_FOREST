@@ -66,11 +66,12 @@ def inicio_sesion(request):
 
     return render(request ,'wiki/inicio-sesion.html')
 
-def Logros(request):
-
+def Logros(request, id_usuario):
+    usuario = Usuario.objects.get(id_usuario = id_usuario)
     listadoTabla = Tabla.objects.filter(categoria = 5)
+    contexto = {"listados":listadoTabla,"usuario" : usuario}
 
-    return render(request , 'wiki/Logros.html',{"listados" : listadoTabla})
+    return render(request , 'wiki/Logros.html',contexto)
 
 def Lugares(request):
 
@@ -146,7 +147,7 @@ def ini_sesion(request):
 
         if(usuario2.tipousuario.id_tipo == 1):
             contexto = {"usuario":usuario2}
-            return render (request,'wiki/Admin.html',contexto)
+            return redirect('Admin')
         else:
             if(usuario2.estado.id_estado == 2):
                 messages.error(request, 'El usuario que ingresaste se encuentra baneado')
@@ -192,9 +193,9 @@ def borrarContenido(request, id_tema, usuario):
     usuario1 = Usuario.objects.get(id_usuario = usuario)
     eliminar = Tabla.objects.get(id_tema = id_tema)
     eliminar.delete()
-    messages.success(request, 'Contenido borrado')
 
     contexto = {"usuario":usuario1}
+    messages.success(request,'Contenido borrado con exito')
     return render(request, 'wiki/menuprincipal.html', contexto)
 
 def registroTabla(request,usuario):
@@ -212,7 +213,7 @@ def registroTabla(request,usuario):
     contexto={"usuario":usuario1}
 
     Tabla.objects.create(usuario = usuario1,categoria = cat2, foto = fotot, nom_dato = nomDato, tipodato = tipoDato, descripcion = desDato, f_creacion = fecDato, estado = estadoDato)
-    messages.success(request,'Dato registrado')
+    messages.success(request,'Dato registrado exitosamente')
     return render(request,'wiki/menuprincipal.html',contexto)
 
 def borrarComentario(request, id_comentario,usuario):
@@ -275,6 +276,7 @@ def modificarTabla(request,usuario):
     listadoTabla.f_creacion = fech
     listadoTabla.save()
 
+    messages.success(request,'Contenido modificado con exito')
     return render(request,'wiki/menuprincipal.html',contexto)
 
 def aniadirComentario(request,id):
