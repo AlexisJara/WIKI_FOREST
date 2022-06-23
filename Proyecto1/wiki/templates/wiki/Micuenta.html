@@ -25,15 +25,28 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         
-    <a class="navbar-brand" href="{% url 'menuprincipal' %}" id="fuente">The Forest Wiki</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    {% if usuario %}
+      <a class="navbar-brand" href="{% url 'menuprincipal2' usuario.id_usuario %}" id="fuente">The Forest Wiki</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% else %}
+      <a class="navbar-brand" href="{% url 'menuprincipal' %}" id="fuente">The Forest Wiki</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    {% endif %}
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
-        </li>
+        {% if usuario %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'menuprincipal2' usuario.id_usuario %}">Inicio</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
+          </li>
+        {% endif %}
         {% if usuario %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Foro' usuario.id_usuario %}">Foro</a>
@@ -119,9 +132,11 @@
                   <a href="{% url 'ModificarCuenta' usuario.id_usuario %}" class="btn btn-dark">Editar</a>
 
                 </div>
-
               </div>
           </ul>
+          <div class="center-nota">
+          <p class="center-nota">Nota: Ponte en contacto con el administrador a traves del correo que estara escrito en la parte inferior de la pagina para eliminar tu cuenta, escribiendo tu nombre de usuario en el asunto y la razon en la casilla de abajo.</p>
+          </div>
           <div class="center">
             {% if messages %}
                 <ul class="messages">

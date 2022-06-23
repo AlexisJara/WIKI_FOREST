@@ -12,6 +12,11 @@ def menuprincipal(request):
 
     return render(request ,'wiki/menuprincipal.html')
 
+def menuprincipal2(request, usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
+    contexto = {"usuario":usuario}
+    return render(request ,'wiki/menuprincipal.html', contexto)
+
 def Animales(request,usuario):
     usuario = Usuario.objects.get(id_usuario = usuario)
     listadoTabla = Tabla.objects.filter(categoria = 3)
@@ -147,7 +152,7 @@ def ini_sesion(request):
 
         if(usuario2.tipousuario.id_tipo == 1):
             contexto = {"usuario":usuario2}
-            return redirect('Admin')
+            return render (request,'wiki/menuprincipal2.html',contexto)
         else:
             if(usuario2.estado.id_estado == 2):
                 messages.error(request, 'El usuario que ingresaste se encuentra baneado')

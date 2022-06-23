@@ -5,6 +5,9 @@
  
 }
 
+.center-nota{
+    text-align: center;
+}
 
 :root {
     --dark: #16191C;

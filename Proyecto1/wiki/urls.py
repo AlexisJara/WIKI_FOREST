@@ -17,10 +17,12 @@ from unicodedata import name
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario, listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, aniadirComentario
+from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario, listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, aniadirComentario, menuprincipal2
 
 urlpatterns = [
     path('', menuprincipal, name='menuprincipal'),
+
+    path('menuprincipal2/<str:usuario>', menuprincipal2, name='menuprincipal2'),
 
     path('Animales/<str:usuario>', Animales, name = 'Animales'),
 

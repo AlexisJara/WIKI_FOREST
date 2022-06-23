@@ -195,11 +195,20 @@ nav{
 	margin-left: 20px;
 }
 
+.center{
+	align-items: center;
+	display: flex;
+
+	justify-content: center;
+
+}
+
+
+
 .warnings{
     text-align: center;
     margin: auto;
     color: white;
     padding-top: 20px;
     text-justify: auto;
-    transform: translateX(-10%);
 }
