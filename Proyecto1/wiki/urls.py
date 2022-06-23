@@ -50,7 +50,7 @@ urlpatterns = [
 
     path('Registrarse/', Registrarse, name='Registrarse'),
 
-    path('Admin/', listado, name='Admin'),
+    path('Admin/<str:usuario>', listado, name='Admin'),
 
     path('Historia/', Historia, name='Historia'),
 
@@ -58,9 +58,9 @@ urlpatterns = [
 
     path('eliminarComentario/<int:id_comentario>/<str:usuario>', borrarComentario, name="borrarComentario"),
 
-    path('eliminarUsuario/<id_usuario>', borrarUsuario, name="eliminarUsuario"),
+    path('eliminarUsuario/<usuario>/<id_usuario>', borrarUsuario, name="eliminarUsuario"),
 
-    path('banearUsuario/<id_usuario>', penalizarUsuario, name="banearUsuario"),
+    path('banearUsuario/<usuario>/<id_usuario>', penalizarUsuario, name="banearUsuario"),
 
     path('VerificarContra/', Vcontra, name='VerificarContra'),
 
@@ -78,7 +78,7 @@ urlpatterns = [
     #Registrar datos de un usuario
 
     path('registro/', registrar_usuario, name='registro'),
-    path('listado', listado, name='listado'),
+
     ##
     path('listadoForo/', listadoForo, name='listadoForo'),
     path('ini_sesion/', ini_sesion, name='ini_sesion'),
