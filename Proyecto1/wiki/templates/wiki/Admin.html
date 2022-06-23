@@ -23,16 +23,28 @@
 <body id=fondo1>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <a class="navbar-brand" href="{% url 'menuprincipal' %}" id="fuente">The Forest Wiki</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        {% if usuario %}
+        <a class="navbar-brand" href="{% url 'menuprincipal2' usuario.id_usuario %}" id="fuente">The Forest Wiki</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        {% else %}
+        <a class="navbar-brand" href="{% url 'menuprincipal' %}" id="fuente">The Forest Wiki</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        {% endif %}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
-            </li>
+            {% if usuario %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'menuprincipal2' usuario.id_usuario %}">Inicio</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'menuprincipal' %}">Inicio</a>
+              </li>
+            {% endif %}
             {% if usuario %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Foro' usuario.id_usuario %}">Foro</a>
@@ -110,11 +122,11 @@
                         <td>{{l.estado}}</td>
                         <td><a href="enviarMensaje/{{l.id_usuario}}" class="btn btn-info">Mensaje</a></td>
                         {% if l.estado.id_estado == 1 %}
-                          <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Banear</a></td>
+                          <td><a href="{% url 'banearUsuario' usuario.id_usuario l.id_usuario %}" class="btn btn-danger">Banear</a></td>
                         {% elif l.estado.id_estado == 2 %}
-                          <td><a href="{% url 'banearUsuario' l.id_usuario %}" class="btn btn-danger">Desbanear</a></td>
+                          <td><a href="{% url 'banearUsuario' usuario.id_usuario l.id_usuario %}" class="btn btn-danger">Desbanear</a></td>
                         {% endif %}
-                        <td><a href="{% url 'eliminarUsuario' l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
+                        <td><a href="{% url 'eliminarUsuario' usuario.id_usuario l.id_usuario %}" class="btn btn-danger">Eliminar</a></td>
                       </tr>
                       {% else %}
                       {% endif %}

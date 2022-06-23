@@ -12,6 +12,11 @@ def menuprincipal(request):
 
     return render(request ,'wiki/menuprincipal.html')
 
+def menuprincipal2(request, usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
+    contexto = {"usuario":usuario}
+    return render(request ,'wiki/menuprincipal.html', contexto)
+
 def Animales(request,usuario):
     usuario = Usuario.objects.get(id_usuario = usuario)
     listadoTabla = Tabla.objects.filter(categoria = 3)
@@ -141,13 +146,12 @@ def registrar_usuario(request):
 def ini_sesion(request):
     usuario1 = request.POST['usuariof']
     contra = request.POST['contrasena']
+    
     try:
-
         usuario2 = Usuario.objects.get(id_usuario = usuario1 , clave = contra)
-
         if(usuario2.tipousuario.id_tipo == 1):
             contexto = {"usuario":usuario2}
-            return redirect('Admin')
+            return render (request,'wiki/menuprincipal.html',contexto)
         else:
             if(usuario2.estado.id_estado == 2):
                 messages.error(request, 'El usuario que ingresaste se encuentra baneado')
@@ -155,39 +159,47 @@ def ini_sesion(request):
             else:
                 contexto = {"usuario":usuario2}
                 return render (request,'wiki/menuprincipal.html',contexto)
-            
     except:
-        messages.error(request, 'El Usuario y/o contraseñas son incorrectos')
-        return redirect ('Inicio-sesion')
+        messages.success(request,'Usuario o contraseña incorrectas')
+        return redirect('Inicio-sesion')
+   
 
 
-def listado(request):
+def listado(request,usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
     listadoUsuario = Usuario.objects.all()
-    return render(request , 'wiki/Admin.html',{"listados" : listadoUsuario})
+    contexto = {"usuario":usuario, "listados" : listadoUsuario}
+    return render(request , 'wiki/Admin.html',contexto)
 
 def listadoForo(request):
     listadoComentario = Comentario.objects.all()
     return render(request , 'wiki/Admin.html',{"listadosForo" : listadoComentario})
 
-def penalizarUsuario(request, id_usuario):
-    usuario = Usuario.objects.get(id_usuario = id_usuario)
-    if usuario.estado.id_estado == 1:
-        usuario.estado = Estado.objects.get(id_estado = 2)
-        usuario.save()
+def penalizarUsuario(request, usuario, id_usuario):
+    usuariot = Usuario.objects.get(id_usuario = id_usuario)
+    usuario = Usuario.objects.get(id_usuario = usuario)
+    listadoUsuario = Usuario.objects.all()
+    contexto = {"usuario":usuario,"listados":listadoUsuario}
+    if usuariot.estado.id_estado == 1:
+        usuariot.estado = Estado.objects.get(id_estado = 2)
+        usuariot.save()
         messages.success(request, '---Usuario baneado exitosamente---')
-    elif usuario.estado.id_estado == 2:
-        usuario.estado = Estado.objects.get(id_estado = 1)
-        usuario.save()
+    elif usuariot.estado.id_estado == 2:
+        usuariot.estado = Estado.objects.get(id_estado = 1)
+        usuariot.save()
         messages.success(request, '---Usuario desbaneado exitosamente---')
 
-    return redirect('listado')
+    return render(request, 'wiki/Admin.html', contexto)
 
-def borrarUsuario(request, id_usuario):
+def borrarUsuario(request, usuario, id_usuario):
+    usuario = Usuario.objects.get(id_usuario = usuario)
+    listadoUsuario = Usuario.objects.all()
     eliminar = Usuario.objects.get(id_usuario = id_usuario)
     eliminar.delete()
+    contexto = {"usuario":usuario,"listados":listadoUsuario}
     messages.success(request, '---Usuario borrado exitosamente---')
 
-    return redirect('listado')
+    return render(request, 'wiki/Admin.html', contexto)
 
 def borrarContenido(request, id_tema, usuario):
     usuario1 = Usuario.objects.get(id_usuario = usuario)

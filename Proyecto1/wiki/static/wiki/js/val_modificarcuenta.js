@@ -5,7 +5,7 @@ const form = document.getElementById("form2");
 var mensaje = document.getElementById("warnings");
 
 form.addEventListener("submit", e => {
-
+    
     let mensajesMostrar = "";
     let entrar = false;
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/
@@ -66,7 +66,7 @@ form.addEventListener("submit", e => {
         mensaje.innerHTML = mensajesMostrar;
         e.preventDefault();
     } else {
-        mensaje.innerHTML = "Enviado";
+        mensaje.innerHTML = "";
     }
 });
 
