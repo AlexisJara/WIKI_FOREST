@@ -91,6 +91,15 @@
 	font-family: cursive;
 }
 
+.imagen{
+	width: 110px;
+	height: 110px;
+ }
+
+.Letra-usuario{
+	font-size: 20px;
+}
+
 
 /* ---- ----- ----- Pie de pagina ----- ----- ----- */
  

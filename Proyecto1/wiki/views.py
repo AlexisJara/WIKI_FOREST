@@ -230,13 +230,14 @@ def registroTabla(request,usuario):
 
 def borrarComentario(request, id_comentario,usuario):
     usuario1 = Usuario.objects.get(id_usuario = usuario)
+    listadoForo = Comentario.objects.all()
     eliminar = Comentario.objects.get(id_comentario = id_comentario)
     eliminar.delete()
-    contexto={"usuario":usuario1}
+    contexto={"usuario":usuario1,"listados":listadoForo}
 
     messages.success(request, '---Comentario borrado exitosamente---')
 
-    return render(request,'wiki/menuprincipal.html',contexto)
+    return render(request,'wiki/forowiki.html',contexto)
 
 
 def modificarC2(request,usuario):

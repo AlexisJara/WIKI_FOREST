@@ -89,7 +89,7 @@
                     <div>
                         <label for="" class="label-color">Usuario autor</label>
 
-                        <input type="text" value="{{ usuario.id_usuario }}">
+                        <input type="text" value="{{ usuario.id_usuario }}" readonly>
 
                     </div>
               {% endif %}
@@ -106,20 +106,20 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Imagen</label>
-                        <input type="file" id="foto" name="foto" class="form-control margin-abajo">
+                        <input type="file" id="foto" name="foto" class="form-control margin-abajo" required>
                     </div>
                     <div>
                         <label for="" class="label-color">Nombre de Enemigo/Flora/Arma/Logro/Animal</label>
-                        <input type="text" id="nombreDato" name="nombreDato" class="form-control margin-abajo">
+                        <input type="text" id="nombreDato" name="nombreDato" class="form-control margin-abajo" required>
                     </div>
                     <div>
                         <label for="" class="label-color">Tipo de dato</label>
-                        <input type="text" id="tipodato" name="tipodato" class="form-control margin-abajo">
+                        <input type="text" id="tipodato" name="tipodato" class="form-control margin-abajo" required>
                         <p class="label-color">Enemigos = Canibal/Mutante<br>Flora = Comestible/Venenosa<br>Armas = Hacha/Espada/Herramienta<br>Logro = Visible/Oculto<br>Animal = Pasivo/Agresivo</p>
                     </div>
                     <div>
                         <label for="" class="label-color">Descripcion</label>
-                        <textarea name="descripcion" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control"></textarea>
+                        <textarea name="descripcion" id="descripcion" cols="40" rows="5" class="margin-abajo separar-lados form-control" required></textarea>
                     </div>
                     <div class="row">
                         <div class="col">
