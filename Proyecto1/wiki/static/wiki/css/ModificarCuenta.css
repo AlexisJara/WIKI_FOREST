@@ -18,12 +18,13 @@ h1{
 }
 
 #fondo{
-    background-color: black;  
-    background-image: url(img/Fondo3.jpg); 
-    background-position: top;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+	background-color: black;  
+	background-image: url('/static/wiki/img/menu-img/fondo_theforest.jpg');
+	background-position: top;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	
 }
  
 
@@ -184,6 +185,11 @@ nav{
 #separar-izquiera{
 	margin-left: 20px;
 }
+
+.margin-btn{
+	margin-top: 10px;
+}
+
 .warnings{
 
     color: azure;

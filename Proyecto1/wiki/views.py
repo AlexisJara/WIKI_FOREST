@@ -19,7 +19,7 @@ def menuprincipal2(request, usuario):
 
 def Animales(request,usuario):
     usuario = Usuario.objects.get(id_usuario = usuario)
-    listadoTabla = Tabla.objects.filter(categoria = 3)
+    listadoTabla = Tabla.objects.filter(categoria = 3).order_by('nom_dato')
     contexto = {"listados" : listadoTabla, "usuario" : usuario}
 
     return render(request ,'wiki/Animales.html',contexto )
@@ -27,7 +27,7 @@ def Animales(request,usuario):
 def Armas(request,usuario):
     usuario = Usuario.objects.get(id_usuario = usuario)
 
-    listadoTabla = Tabla.objects.filter(categoria = 1)
+    listadoTabla = Tabla.objects.filter(categoria = 1).order_by('nom_dato')
     contexto = {"listados" : listadoTabla, "usuario" : usuario}
     
     return render(request , 'wiki/Armas.html',contexto)
@@ -43,14 +43,14 @@ def Consumibles(request):
 def Enemigos(request,usuario):
 
     usuario = Usuario.objects.get(id_usuario = usuario)
-    listadoTabla = Tabla.objects.filter(categoria = 2)
+    listadoTabla = Tabla.objects.filter(categoria = 2).order_by('nom_dato')
     contexto = {"listados" : listadoTabla, "usuario" : usuario}
     
     return render(request,'wiki/Enemigos.html',contexto)
 
 def Flora(request,usuario):
     usuario = Usuario.objects.get(id_usuario = usuario)
-    listadoTabla = Tabla.objects.filter(categoria = 4)
+    listadoTabla = Tabla.objects.filter(categoria = 4).order_by('nom_dato')
     contexto = {"listados":listadoTabla,"usuario" : usuario}
 
     return render(request , 'wiki/Flora.html',contexto)
@@ -58,7 +58,7 @@ def Flora(request,usuario):
 
 def forowiki(request,usuario):
 
-    listadoForo = Comentario.objects.all()
+    listadoForo = Comentario.objects.all().order_by('f_creacion')
     usu = Usuario.objects.get(id_usuario=usuario)
     contexto={"usuario":usu,"listados":listadoForo}
     return render(request ,'wiki/forowiki.html',contexto)
@@ -73,7 +73,7 @@ def inicio_sesion(request):
 
 def Logros(request, id_usuario):
     usuario = Usuario.objects.get(id_usuario = id_usuario)
-    listadoTabla = Tabla.objects.filter(categoria = 5)
+    listadoTabla = Tabla.objects.filter(categoria = 5).order_by('nom_dato')
     contexto = {"listados":listadoTabla,"usuario" : usuario}
 
     return render(request , 'wiki/Logros.html',contexto)
@@ -235,7 +235,7 @@ def borrarComentario(request, id_comentario,usuario):
     eliminar.delete()
     contexto={"usuario":usuario1,"listados":listadoForo}
 
-    messages.success(request, '---Comentario borrado exitosamente---')
+    messages.success(request, '-----Comentario borrado exitosamente-----')
 
     return render(request,'wiki/forowiki.html',contexto)
 
@@ -293,17 +293,18 @@ def modificarTabla(request,usuario):
     return render(request,'wiki/menuprincipal.html',contexto)
 
 def aniadirComentario(request,id):
+    listadoForo = Comentario.objects.all().order_by('f_creacion')
     dtema = request.POST['tema']
     comentariou = request.POST['Comentario']
     usut = Usuario.objects.get(id_usuario = id)
     estadoDato = Estado.objects.get(id_estado = 1)
     fechaa = datetime.datetime.now()
 
-    contexto ={"usuario":usut}
+    contexto ={"usuario":usut,"listados":listadoForo}
 
     Comentario.objects.create(titulo_com = dtema,f_creacion = fechaa, texto = comentariou, estado = estadoDato,usuario = usut)
     messages.success(request,'---Comentario añadido exitosamente---')
-    return render(request,'wiki/menuprincipal.html',contexto)
+    return render(request,'wiki/forowiki.html',contexto)
 
     
 

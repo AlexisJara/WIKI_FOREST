@@ -24,7 +24,7 @@ form.addEventListener("submit", e => {
         entrar = true;
     }
     if(!/[A-Z]/.test(nomdato.value[0])){  
-        mensajesMostrar += 'El nombre del Enemigo/Flora/Arma debe tener una mayuscula al inicio. <br>';
+        mensajesMostrar += 'El nombre del Enemigo/Flora/Arma/Logros/Animales debe tener una mayuscula al inicio. <br>';
         entrar = true;
     }
     
@@ -53,7 +53,7 @@ form.addEventListener("submit", e => {
         mensaje.innerHTML = mensajesMostrar;
         e.preventDefault();
     } else {
-        mensaje.innerHTML = "Enviado";
+        mensaje.innerHTML = "";
     }
 });
 

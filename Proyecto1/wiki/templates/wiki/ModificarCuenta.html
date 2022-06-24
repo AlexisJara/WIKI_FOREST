@@ -72,10 +72,6 @@
                 {% endif %}
                 
           </ul>
-          <form class="d-flex" id="separar-derecha">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
         </div>
       
     </nav>
@@ -121,15 +117,16 @@
                         <input type="password" value="{{usuario.clave}}" id="Clave2" name="Clave2" class="form-control margin-abajo" required>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <button type="submit" class="btn btn-dark form-control">Modificar</button>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-dark form-control margin-btn">Modificar</button>
                         </div>
-                        <div class="col">
-                            <button type="reset" class="btn btn-dark form-control">Borrar</button>
+                        <div class="col-6">
+                            <button type="reset" class="btn btn-dark form-control margin-btn">Borrar</button>
                         </div>
                     </div>
                     <div class="center">
-                        <p class="warnings" id="warnings"></p></div>
+                        <p class="warnings" id="warnings"></p>
+                    </div>
                 </form>
             {% endif %}
             </div>

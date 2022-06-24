@@ -20,6 +20,25 @@ h5{
     margin-bottom: 5px;
 }
 
+.warnings{
+    text-align: center;
+    margin: auto;
+    color: white;
+    padding-top: 20px;
+    text-justify: auto;
+}
+
+.center{
+	align-items: center;
+	display: flex;
+
+	justify-content: center;
+
+}
+
+.margin-abajoo{
+    margin-bottom: 15px;
+}
 
 #fuente{
 	color: var(--rojo);

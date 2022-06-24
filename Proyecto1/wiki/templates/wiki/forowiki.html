@@ -69,12 +69,14 @@
                   <a class="nav-link" href="{% url 'Inicio-sesion' %}">Iniciar sesion</a>
                 </li>
                 {% endif %}
+                {% if usuario.tipousuario.id_tipo == 1 %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'Admin' usuario.id_usuario%}">Administrador</a>
+                </li>
+                {% endif %}
                 
           </ul>
-          <form class="d-flex" id="separarsearch" >
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
+          
         </div>
       
     </nav>
@@ -84,18 +86,31 @@
 
     <div class="row comentarios justify-content-center">
         <div class="col-6">
+          <div>
+            {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                  <li class="text-danger center">{{ message }}</li>
+                  {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="center margin-abajoo">
+                  <p class="warnings" id="warnings"></p>
+              </div>
+            </div>
+          </div>
           {% if usuario %}
             {% if usuario.tipousuario.id_tipo == 2 %}
-            <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
+            <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" id="form" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
               
                 {% csrf_token %}
-
 
                 <div>
                   <input type="text" id="usuarioa" name="usuarioa" class="form-control margin-abajo" value="{{usuario.id_usuario}}" readonly>
                 </div>
-
-
                 <input type="text" placeholder="tema" id="tema" name="tema" class="form-control margin-tema" required>
                 <textarea name="Comentario" id="Comentario" placeholder="Comentario" class="form-control" required></textarea>
                 <button class="btn margin-bot" type="reset" >Borrar</button>
@@ -118,7 +133,7 @@
 
                     </div>
                     {% if usuario.id_usuario == l.usuario.id_usuario %}
-                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="btn btn-danger margin-button">Eliminar</a></div>
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-danger">Eliminar</a></div>
                     {% elif usuario.tipousuario.id_tipo == 1 %}
                     <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-danger">Eliminar</a></div>
                     {% else %}
@@ -151,5 +166,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="{% static 'wiki/js/val_foro.js' %}"></script>
 </body>
 </html>

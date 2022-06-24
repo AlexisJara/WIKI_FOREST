@@ -11,13 +11,13 @@
 }
 
 #fondo{
-   background-color: black;  
-   background-image: url(../img_wiki/Fondo3.jpg); 
-   background-position: top;
-   background-attachment: fixed;
-   background-repeat: no-repeat;
-   background-size: cover;
-}
+	background-color: black;  
+	background-image: url('/static/wiki/img/menu-img/Fondo3.jpg');
+	background-position: top;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+ }
 
 #caja_bienvenida{
    background-color: black;
