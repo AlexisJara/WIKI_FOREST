@@ -11,12 +11,14 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap"
     rel="stylesheet">
-    <link href="{% static 'wiki/css/estilo.css' %}" type="text/css" rel="stylesheet">
+    
+  <link href="{% static 'wiki/css/estilo.css' %}" type="text/css" rel="stylesheet">
 </head>
 
 
 <body class="colorfondo">
- 
+<a href="https://api.whatsapp.com/send?phone=+56957362510&text=Aqu%C3%AD%20puedes%20hacer%20tus%20consultas%20acerca%20de%20la%20pagina%20y%20reportar%20a%20usuarios%20que%20infringan%20la%20leyes%20de%20la%20pagina.%20"
+ class="boton-wsp" target="_blank"> <i class="fa fa-whatsapp icono"></i></a>
     
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           {% if usuario %}
@@ -213,6 +215,8 @@
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <script src="{% static 'wiki/js/main.js' %}"></script> <!--CAMBIAR A DJANGO (CARROUSEL)-->
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+
 
   </main>
 
