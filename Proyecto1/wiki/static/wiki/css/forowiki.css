@@ -26,6 +26,7 @@ h5{
     color: white;
     padding-top: 20px;
     text-justify: auto;
+    font-size: 18px;
 }
 
 .center{
@@ -132,6 +133,11 @@ nav{
     margin-left: 20px;
 
 }
+
+.tammannio-letra{
+    font-size: 18px;
+}
+
 img{
     width: 64px;
     height: 64px;
@@ -148,6 +154,7 @@ img{
 
 .margin-tema{
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #fondo1{
