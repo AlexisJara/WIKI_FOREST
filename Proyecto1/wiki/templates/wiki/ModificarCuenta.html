@@ -81,7 +81,7 @@
             <div class="col-md-6">
               {% if usuario %}
               
-                <form class="row g-3 needs-validation" action="{% url 'ModificarCuenta2' usuario.id_usuario %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
+                <form class="row g-3" action="{% url 'ModificarCuenta2' usuario.id_usuario %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
 
                     {% csrf_token %}
                     <h1 class="label-color">Edita tu Usuario!</h1>

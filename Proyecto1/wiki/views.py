@@ -241,18 +241,18 @@ def borrarComentario(request, id_comentario,usuario):
 
 
 def modificarC2(request,usuario):
+
     nombre_u = request.POST['nombre']
     apellido_u = request.POST['apellido']
-    nomusuario_u = request.POST['nomusuario']
-    avatar_u = request.FILES['foto']
+    usuario = Usuario.objects.get(id_usuario = usuario)
+    if (request.FILES.get("foto")):
+        fotot = request.FILES['foto']
+        usuario.foto = fotot
     correo_u = request.POST['correo']
     clave_u = request.POST['Clave1']
 
-    
-    usuario = Usuario.objects.get(id_usuario = nomusuario_u)
     usuario.nombre = nombre_u
     usuario.apellido = apellido_u
-    usuario.foto = avatar_u
     usuario.correo = correo_u
     usuario.clave = clave_u
     contexto ={
