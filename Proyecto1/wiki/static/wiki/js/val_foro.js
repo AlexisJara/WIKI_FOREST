@@ -13,7 +13,7 @@ form.addEventListener("submit", e => {
     mensaje.innerHTML = "";
 
     
-    if (nomtema.value.length < 5 ||  nomtema.value.length > 100) {
+    if (nomtema.value.length < 5 ||  nomtema.value.length > 50) {
         mensajesMostrar += 'El nombre del tema no tiene el largo necesario/limite. <br>';
         entrar = true;
     }

@@ -265,6 +265,29 @@ def modificarC2(request,usuario):
     messages.success(request,'Usuario Modificado exitosamente')
     return render(request,'wiki/Micuenta.html',contexto)
 
+def editarForo(request,idtema,usuario):
+    idt = Comentario.objects.get(id_comentario = idtema)
+    usuario1 = Usuario.objects.get(id_usuario = usuario)
+    contexto = {"tema":idt, "usuario":usuario1}
+
+    return render(request,'wiki/editarForo.html',contexto)
+
+def modificarComentario(request, idtema, usuario):
+    idt = Comentario.objects.get(id_comentario = idtema)
+    usuario1 = Usuario.objects.get(id_usuario = usuario)
+    listadoForo = Comentario.objects.all().order_by('f_creacion')
+    usut = usuario1
+    dtema = request.POST['tema']
+    comentariou = request.POST['Comentario']
+
+    idt.titulo_com = dtema
+    idt.texto = comentariou
+    idt.save()
+
+    contexto = {"usuario":usut,"listados":listadoForo}
+    messages.success(request,'---Comentario modificado exitosamente---')
+    return render(request,'wiki/forowiki.html',contexto)
+
 def modificarTabla(request,usuario):
     usuario1= Usuario.objects.get(id_usuario = usuario)
     usut = usuario1

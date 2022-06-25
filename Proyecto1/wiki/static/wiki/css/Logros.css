@@ -105,12 +105,15 @@
  
 footer {
 	background-color: rgba(36, 36, 36, 0.664);
-	color: white;
-	padding-top: 1.2rem;
-	padding-bottom: 1.2rem;
-	display: flex;
-	flex-direction: column;
-	text-align: center;
+    color: white;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+	margin-top: 50px;
+    position: absolute;
+    width: 100%;
 }
 
 /*footer{

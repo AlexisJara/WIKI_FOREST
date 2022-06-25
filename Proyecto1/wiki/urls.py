@@ -17,7 +17,7 @@ from unicodedata import name
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario, listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, aniadirComentario, menuprincipal2
+from .views import registroTabla, borrarComentario, borrarContenido, listadoForo, menuprincipal, Armas, Animales, Construcciones, Consumibles, Enemigos, Flora, forowiki, inicio_sesion, Logros, Lugares, Micuenta, Recuperarcontra, Registrarse, Admin, Historia, borrarUsuario, Vcontra, ModificarC, FormularioTablas, modificarC2, penalizarUsuario, registrar_usuario, listado, ini_sesion, listadoForo, EditarTablas, modificarTabla, aniadirComentario, menuprincipal2, modificarComentario,editarForo
 
 urlpatterns = [
     path('', menuprincipal, name='menuprincipal'),
@@ -37,6 +37,10 @@ urlpatterns = [
     path('Flora/<str:usuario>', Flora, name='Flora'),
 
     path('Foro/<str:usuario>', forowiki, name='Foro'),
+
+    path('editarForo/<int:idtema>/<str:usuario>', editarForo, name='editarForo'),
+
+    path('modificarComentario/<int:idtema>/<str:usuario>', modificarComentario, name='modificarComentario'),
 
     path('Inicio-sesion/', inicio_sesion, name='Inicio-sesion'),
 

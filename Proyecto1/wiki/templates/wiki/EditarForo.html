@@ -82,7 +82,7 @@
     </nav>
 
 <div class="container">
-    <H5>Comparte tus temas con la comunidad!</H5>
+    <H5>Modificar comentario</H5>
 
     <div class="row comentarios justify-content-center">
         <div class="col-6">
@@ -104,17 +104,17 @@
           </div>
           {% if usuario %}
             {% if usuario.tipousuario.id_tipo == 2 %}
-            <form action=" {% url 'aniadirComentario' usuario.id_usuario %}" id="form" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
+            <form action=" {% url 'modificarComentario' tema.id_comentario usuario.id_usuario %}" id="form" method="POST" enctype="multipart/form-data" class="form_comentarios d-flex justify-content-end flex-wrap">
               
                 {% csrf_token %}
 
                 <div>
                   <input type="text" id="usuarioa" name="usuarioa" class="form-control margin-abajo" value="{{usuario.id_usuario}}" readonly>
                 </div>
-                <input type="text" placeholder="tema" id="tema" name="tema" class="form-control margin-tema" required>
-                <textarea name="Comentario" id="Comentario" placeholder="Comentario" class="form-control" required></textarea>
+                <input type="text" placeholder="tema" id="tema" name="tema" class="form-control margin-tema" value="{{ tema.titulo_com }}" required>
+                <textarea name="Comentario" id="Comentario" placeholder="Comentario" class="form-control"  value="{{ tema.texto }}" required>{{ tema.texto }}</textarea>
                 <button class="btn margin-bot" type="reset" >Borrar</button>
-                <button class="btn " type="submit">Comentar</button>
+                <button class="btn " type="submit">Modificar</button>
           
             </form>
             {% else %}
@@ -133,10 +133,7 @@
 
                     </div>
                     {% if usuario.id_usuario == l.usuario.id_usuario %}
-                    <div class="row">
-                      <div class="col-md-3"><a href="{% url 'editarForo' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-info">Modificar</a></div>
-                      <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-danger">Eliminar</a></div>
-                    </div>
+                    <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-danger">Eliminar</a></div>
                     {% elif usuario.tipousuario.id_tipo == 1 %}
                     <div class="col-md-6"><a href="{% url 'borrarComentario' l.id_comentario usuario.id_usuario %}" class="margin-button btn btn-danger">Eliminar</a></div>
                     {% else %}
