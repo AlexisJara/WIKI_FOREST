@@ -17,6 +17,14 @@ h1{
     color: #ffc400;
 }
 
+.center{
+	align-items: center;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+
+}
+
 #fondo{
 	background-color: black;  
 	background-image: url('/static/wiki/img/menu-img/fondo_theforest.jpg');
