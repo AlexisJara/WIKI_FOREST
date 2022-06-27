@@ -212,6 +212,7 @@ def borrarContenido(request, id_tema, usuario):
 
 def registroTabla(request,usuario):
     usuario1 = Usuario.objects.get(id_usuario = usuario)
+    usut = usuario1
     categoriat = request.POST.get('categoria')
     cat2 = Categoria.objects.get(id_categoria=categoriat)
     fotot = request.FILES.get('foto')
