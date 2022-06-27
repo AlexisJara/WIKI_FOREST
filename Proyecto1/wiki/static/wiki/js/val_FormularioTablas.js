@@ -19,7 +19,7 @@ form.addEventListener("submit", e => {
         entrar = true;
     }
 
-    if (nomdato.value.length < 6 ) {
+    if (nomdato.value.length < 5 ) {
         mensajesMostrar += 'El nombre del dato no tiene el largo necesario. <br>';
         entrar = true;
     }

@@ -12,7 +12,7 @@ form.addEventListener("submit", e => {
     let rut = /^[0-9]+[-|‐]{1}[0-9kK]{1}$/
     mensaje.innerHTML = "";
 
-    if (nombre.value.length < 4 || nombre.value.length > 12) {
+    if (nombre.value.length < 3 || nombre.value.length > 12) {
         mensajesMostrar += 'El nombre no tiene el largo necesario <br>';
         entrar = true;
     }
@@ -21,7 +21,7 @@ form.addEventListener("submit", e => {
         entrar = true;
     }
     
-    if (apellido.value.length < 4 || apellido.value.length > 12) {
+    if (apellido.value.length < 3 || apellido.value.length > 12) {
         mensajesMostrar += 'El apellido no tiene el largo necesario <br>';
         entrar = true;
     }

@@ -76,17 +76,7 @@
                   <a class="nav-link" href="{% url 'Admin' usuario.id_usuario %}">Administrador</a>
                 </li>
                 {% endif %}
-                <div class="margin-bot">
-                  <li class="nav-item">
-                    {% if messages %}
-                      <ul class="messages">
-                      {% for message in messages %}
-                      <li class="text-danger nav-link margin-bot">{{ message }}</li>
-                      {% endfor %}
-                      </ul>
-                    {% endif %}
-                  </li>
-                </div>
+                    
                 
                 
                 
@@ -113,6 +103,13 @@
       </div>
     </div>
     <div class="container-fluid">
+      {% if messages %}
+                    <div class="alert alert-success margin-bot w-60 h-25 text-center container" role="alert">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
       <div class="itemtf-recomendadas contenedor">
         <div class="contenedor-titulo-controles">
           <h3 id="fuente">Contenido The Forest</h3>

@@ -90,12 +90,12 @@
         <div class="col-6">
           <div>
             {% if messages %}
-              <ul class="messages tammannio-letra">
-                  {% for message in messages %}
-                  <li class="text-danger center">{{ message }}</li>
-                  {% endfor %}
-              </ul>
-            {% endif %}
+                    <div class="alert alert-success margin-bot w-60 h-10 text-center container" role="alert">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
           </div>
           <div class="row">
             <div class="col-12">

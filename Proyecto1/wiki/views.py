@@ -231,12 +231,12 @@ def registroTabla(request,usuario):
 
 def borrarComentario(request, id_comentario,usuario):
     usuario1 = Usuario.objects.get(id_usuario = usuario)
-    listadoForo = Comentario.objects.all()
+    listadoForo = Comentario.objects.all().order_by('f_creacion')
     eliminar = Comentario.objects.get(id_comentario = id_comentario)
     eliminar.delete()
     contexto={"usuario":usuario1,"listados":listadoForo}
 
-    messages.success(request, '-----Comentario borrado exitosamente-----')
+    messages.success(request, 'Comentario borrado exitosamente')
 
     return render(request,'wiki/forowiki.html',contexto)
 
@@ -286,7 +286,7 @@ def modificarComentario(request, idtema, usuario):
     idt.save()
 
     contexto = {"usuario":usut,"listados":listadoForo}
-    messages.success(request,'---Comentario modificado exitosamente---')
+    messages.success(request,'Comentario modificado exitosamente')
     return render(request,'wiki/forowiki.html',contexto)
 
 def modificarTabla(request,usuario):
@@ -327,7 +327,7 @@ def aniadirComentario(request,id):
     contexto ={"usuario":usut,"listados":listadoForo}
 
     Comentario.objects.create(titulo_com = dtema,f_creacion = fechaa, texto = comentariou, estado = estadoDato,usuario = usut)
-    messages.success(request,'---Comentario añadido exitosamente---')
+    messages.success(request,'Comentario añadido exitosamente')
     return render(request,'wiki/forowiki.html',contexto)
 
     
