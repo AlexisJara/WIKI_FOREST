@@ -39,6 +39,26 @@ h5{
     margin-bottom: 5px;
 }
 
+.warnings{
+    text-align: center;
+    margin: auto;
+    color: white;
+    padding-top: 20px;
+    text-justify: auto;
+    font-size: 18px;
+}
+
+.center{
+	align-items: center;
+	display: flex;
+
+	justify-content: center;
+
+}
+
+.margin-abajoo{
+    margin-bottom: 15px;
+}
 
 #fuente{
 	color: var(--rojo);
@@ -132,6 +152,11 @@ nav{
     margin-left: 20px;
 
 }
+
+.tammannio-letra{
+    font-size: 18px;
+}
+
 img{
     width: 64px;
     height: 64px;
@@ -148,6 +173,7 @@ img{
 
 .margin-tema{
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #fondo1{
@@ -168,4 +194,17 @@ footer {
     flex-direction: column;
     text-align: center;
 	margin-top: 50px;
+    position: absolute;
+    width: 100%;
+
 }
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    margin: 0;
+    margin-bottom: 40px;
+}
+

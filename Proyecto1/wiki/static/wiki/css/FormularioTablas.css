@@ -198,7 +198,7 @@ nav{
 .center{
 	align-items: center;
 	display: flex;
-
+	text-align: center;
 	justify-content: center;
 
 }

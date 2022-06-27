@@ -72,10 +72,6 @@
                 {% endif %}
                 
           </ul>
-          <form class="d-flex" id="separar-derecha">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
         </div>
       
     </nav>
@@ -85,7 +81,7 @@
             <div class="col-md-6">
               {% if usuario %}
               
-                <form class="row g-3 needs-validation" action="{% url 'ModificarCuenta2' usuario.id_usuario %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
+                <form class="row g-3" action="{% url 'ModificarCuenta2' usuario.id_usuario %}" method="POST" id="form2" enctype="multipart/form-data" novalidate>
 
                     {% csrf_token %}
                     <h1 class="label-color">Edita tu Usuario!</h1>
@@ -106,7 +102,8 @@
                     </div>
                     <div>
                         <label for="" class="label-color">Imagen</label>
-                        <input type="file" value="{{usuario.foto.url}}" id="foto" name="foto" class="form-control margin-abaj" required>
+                        <input type="file" value="{{usuario.foto.url}}" id="foto" name="foto" class="form-control margin-abajo" required>
+                        <p class="center label-color">---Si quieres mantener la imagen que ya tenia tu usuario, ignora este campo y sigue con los demas datos que quieras modificar.</p>
                     </div>
                     <div>
                         <label for="" class="label-color">Correo</label>
@@ -121,15 +118,16 @@
                         <input type="password" value="{{usuario.clave}}" id="Clave2" name="Clave2" class="form-control margin-abajo" required>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <button type="submit" class="btn btn-dark form-control">Modificar</button>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-dark form-control margin-btn">Modificar</button>
                         </div>
-                        <div class="col">
-                            <button type="reset" class="btn btn-dark form-control">Borrar</button>
+                        <div class="col-6">
+                            <button type="reset" class="btn btn-dark form-control margin-btn">Borrar</button>
                         </div>
                     </div>
                     <div class="center">
-                        <p class="warnings" id="warnings"></p></div>
+                        <p class="warnings" id="warnings"></p>
+                    </div>
                 </form>
             {% endif %}
             </div>

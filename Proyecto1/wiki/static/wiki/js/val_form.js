@@ -66,7 +66,7 @@ form.addEventListener("submit", e => {
         mensaje.innerHTML = mensajesMostrar;
         e.preventDefault();
     } else {
-        mensaje.innerHTML = "Enviado";
+        mensaje.innerHTML = "";
     }
 });
 
